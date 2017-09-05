@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="522.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.FXMLInterfazController">
+    <children>
+        <Button fx:id="button" layoutX="14.0" layoutY="466.0" onAction="#BotonCommit" prefHeight="42.0" prefWidth="200.0" text="Commit" />
+      <TableView fx:id="table" layoutX="217.0" layoutY="14.0" prefHeight="494.0" prefWidth="403.0">
+        <columns>
+          <TableColumn fx:id="carne" prefWidth="138.0" text="Carné" />
+          <TableColumn fx:id="nombre" prefWidth="137.0" text="Nombre" />
+            <TableColumn fx:id="carrera" prefWidth="127.0" text="Carrera" />
+        </columns>
+      </TableView>
+      <TreeView fx:id="treeView" layoutX="14.0" layoutY="14.0" prefHeight="446.0" prefWidth="200.0" />
+    </children>
+</AnchorPane>
