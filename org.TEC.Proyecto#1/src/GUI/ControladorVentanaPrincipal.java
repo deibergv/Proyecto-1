@@ -79,7 +79,7 @@ public class ControladorVentanaPrincipal implements Initializable {
         TreeItem<String> nodeA1 = new TreeItem<>("Juan");
         TreeItem<String> nodeB1 = new TreeItem<>("Isaac");
         TreeItem<String> nodeC1 = new TreeItem<>("Ricardo");
-        nodeA.getChildren().addAll(nodeA1); //el addAll para agregar mas de uno a la vez
+        nodeA.getChildren().addAll(nodeA1);
         nodeB.getChildren().add(nodeB1);
         nodeC.getChildren().add(nodeC1);
 
@@ -89,7 +89,6 @@ public class ControladorVentanaPrincipal implements Initializable {
         carne.setCellValueFactory(new PropertyValueFactory<Tabla, Integer>("carne"));
         nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));
         carrera.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carrera"));
-        //table.setItems(list);
 
 //////////////////////////////////MenuDeArbol///////////////////////////////////
         treeView.setCellFactory(new Callback<TreeView<String>, TreeCell<String>>() {
@@ -123,8 +122,8 @@ public class ControladorVentanaPrincipal implements Initializable {
                     //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Ctrl+Delete"));
                     MenuItem childEliminarTodos = new MenuItem("Eliminar todos los Estudiantes");
                     //childEliminarTodos.setAccelerator(KeyCombination.keyCombination("Shift+Delete"));
-                    //MenuEliminar.getItems().addAll(childEliminarUno, childEliminarTodos);///////////////////////////////////////////
-                    MenuEliminar.getItems().addAll(childEliminarSeleccionado,childEliminarUno, childEliminarTodos);
+////////////////////MenuEliminar.getItems().addAll(childEliminarUno, childEliminarTodos);///////////////////////////////////////////
+                    MenuEliminar.getItems().addAll(childEliminarSeleccionado, childEliminarUno, childEliminarTodos);
 
                     contextMenu.getItems().addAll(Buscar, Actualizar, separador1,
                             Mostrar, MenuNuevo, separador2, MenuEliminar);
@@ -167,7 +166,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                             getTreeItem().getChildren().add(NuevoEstudiante);
                         }
                     });
-                    
+
                     childEliminarSeleccionado.setOnAction(new EventHandler() {
                         @Override
                         public void handle(Event t) {                   ////falta agregar que borre carpeta de verdad
@@ -185,8 +184,8 @@ public class ControladorVentanaPrincipal implements Initializable {
                         public void handle(Event t) {        ////falta agregar que borre carpeta de verdad
                             TreeItem<String> selected = getTreeItem();
                         }               ///// FALTA ELIMINAR POR BUSQUEDA
-                    });         
-                    
+                    });
+
                     childEliminarTodos.setOnAction(new EventHandler() {///// Funcion de la opcion de Eliminar Todos
                         @Override
                         public void handle(Event t) {                                   /////While o for para que borre todos?
@@ -195,7 +194,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                     });
                 }
 
-/////////////////////// Menu de opciones en cada nodo //////////////////////
+/////////////////////// Menu de opciones en cada nodo //////////////////////////
                 @Override
                 public void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
@@ -223,10 +222,10 @@ public class ControladorVentanaPrincipal implements Initializable {
                     }
                 }
 
+//////////////////////////////// Implementacion de edicion de nombres en Arbol (no se guardan cambios) ////////////////////////////// 
                 @Override
                 public void startEdit() {
                     super.startEdit();
-
                     if (textField == null) {
                         createTextField();
                     }
@@ -245,7 +244,6 @@ public class ControladorVentanaPrincipal implements Initializable {
                 private void createTextField() {
                     textField = new TextField(getString());
                     textField.setOnKeyReleased(new EventHandler<KeyEvent>() {
-
                         @Override
                         public void handle(KeyEvent t) {
                             if (t.getCode() == KeyCode.ENTER) {
