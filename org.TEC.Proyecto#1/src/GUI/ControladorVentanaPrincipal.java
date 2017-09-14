@@ -26,6 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
+import javax.swing.JOptionPane;
 
 public class ControladorVentanaPrincipal implements Initializable {
 
@@ -88,7 +89,7 @@ public class ControladorVentanaPrincipal implements Initializable {
         carne.setCellValueFactory(new PropertyValueFactory<Tabla, Integer>("carne"));
         nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));
         carrera.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carrera"));
-        table.setItems(list);
+        //table.setItems(list);
 
 //////////////////////////////////MenuDeArbol///////////////////////////////////
         treeView.setCellFactory(new Callback<TreeView<String>, TreeCell<String>>() {
@@ -116,106 +117,87 @@ public class ControladorVentanaPrincipal implements Initializable {
                     MenuNuevo.getItems().addAll(childNuevoCurso, childNuevoEstudiante);
                     SeparatorMenuItem separador2 = new SeparatorMenuItem();
                     Menu MenuEliminar = new Menu("Eliminar");
+                    MenuItem childEliminarSeleccionado = new MenuItem("Eliminar Curso o Estudiante seleccionado");////////////////EXTRA///////////
+                    //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Delete"));                    ////////////////////////////
                     MenuItem childEliminarUno = new MenuItem("Eliminar un Estudiante");
-                    //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Delete"));
+                    //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Ctrl+Delete"));
                     MenuItem childEliminarTodos = new MenuItem("Eliminar todos los Estudiantes");
                     //childEliminarTodos.setAccelerator(KeyCombination.keyCombination("Shift+Delete"));
-                    MenuEliminar.getItems().addAll(childEliminarUno, childEliminarTodos);
+                    //MenuEliminar.getItems().addAll(childEliminarUno, childEliminarTodos);///////////////////////////////////////////
+                    MenuEliminar.getItems().addAll(childEliminarSeleccionado,childEliminarUno, childEliminarTodos);
 
                     contextMenu.getItems().addAll(Buscar, Actualizar, separador1,
                             Mostrar, MenuNuevo, separador2, MenuEliminar);
 
-                    Buscar.setOnAction(
-                            new EventHandler() {///// Funcion de la opcion de Busqueda
+                    Buscar.setOnAction(new EventHandler() {///// Funcion de la opcion de Busqueda
                         @Override
-                        public void handle(Event t
-                        ) {
+                        public void handle(Event t) {
                             ProgramaPrincipal.MostrarVentanaBusqueda();
-                        }
-                    }
-                    );
-
-                    Actualizar.setOnAction(
-                            new EventHandler() {///// Funcion de la opcion de Actualizacion
-                        @Override
-                        public void handle(Event t
-                        ) {
-                            ProgramaPrincipal.MostrarVentanaActualizacion();
-                        }
-                    }
-                    );
-
-                    Mostrar.setOnAction(
-                            new EventHandler() {///// Funcion de la opcion de Mostrar
-                        @Override
-                        public void handle(Event t
-                        ) {
                         }
                     });
 
-                    childNuevoCurso.setOnAction(
-                            new EventHandler() {///// Funcion de la opcion de Agregar Nuevo
+                    Actualizar.setOnAction(new EventHandler() {///// Funcion de la opcion de Actualizacion
                         @Override
-                        public void handle(Event t
-                        ) {
-                            ProgramaPrincipal.MostrarVentanaNuevoCurso();
-                            TreeItem NuevoEstudiante
-                                    = new TreeItem<String>("Nuevo");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
+                        public void handle(Event t) {
+                            ProgramaPrincipal.MostrarVentanaActualizacion();
+                        }
+                    });
+
+                    Mostrar.setOnAction(new EventHandler() {///// Funcion de la opcion de Mostrar
+                        @Override
+                        public void handle(Event t) {
+                            table.setItems(list);
+                        }
+                    });
+
+                    childNuevoCurso.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Curso
+                        @Override
+                        public void handle(Event t) {
+                            ProgramaPrincipal.MostrarVentanaNuevoCurso();       ///// lectura de entry para nombre de nuevo documento
+                            TreeItem NuevoCurso = new TreeItem<String>("Nuevo Curso");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
+                            NodoPrincipal.getChildren().add(NuevoCurso);
+                        }
+                    });
+
+                    childNuevoEstudiante.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Objeto
+                        @Override
+                        public void handle(Event t) {
+                            ProgramaPrincipal.MostrarVentanaNuevoEstudiante();            ///// lectura de entry para nombre de nuevo documento
+                            TreeItem NuevoEstudiante = new TreeItem<String>("Nuevo Estudiante");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
                             getTreeItem().getChildren().add(NuevoEstudiante);
                         }
-                    }
-                    );
-
-                    childNuevoEstudiante.setOnAction(
-                            new EventHandler() {///// Funcion de la opcion de Agregar Nuevo
+                    });
+                    
+                    childEliminarSeleccionado.setOnAction(new EventHandler() {
                         @Override
-                        public void handle(Event t
-                        ) {
-                            ProgramaPrincipal.MostrarVentanaNuevoEstudiante();
-                            TreeItem NuevoEstudiante
-                                    = new TreeItem<String>("Nuevo");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
-                            getTreeItem().getChildren().add(NuevoEstudiante);
-                        }
-                    }
-                    );
-
-//                    MenuItem BORRADOR = new MenuItem("Remove");
-//                    childEliminarUno.setOnAction(new EventHandler() {///// Funcion de la opcion de Eliminar Uno Solo
-//                        @Override
-//                        public void handle(Event t) {
-//                            TreeItem c = getTreeItem();
-//                            boolean remove = c.getParent().getChildren().remove(c);
-//                        }
-//                    });
-                    childEliminarUno.setOnAction(
-                            new EventHandler() {///// Funcion de la opcion de Eliminar Uno Solo
-                        @Override
-                        public void handle(Event t
-                        ) {
+                        public void handle(Event t) {                   ////falta agregar que borre carpeta de verdad
                             TreeItem<String> selected = getTreeItem();
-                            selected.getParent().getChildren().remove(selected);        ////falta agregar que borre carpeta de verdad
-
-                            /////////////////////////////////// agregar restriccion de no permitir borrar NODO PRINCIPAL
+                            if (selected == NodoPrincipal) {
+                                JOptionPane.showMessageDialog(null, "El Sistema de almacenamiento Base no puede ser eliminado", "Error", JOptionPane.WARNING_MESSAGE);
+                            } else {
+                                getTreeItem().getParent().getChildren().remove(getTreeItem());
+                            }
                         }
-                    }
-                    );
+                    });
 
-                    childEliminarTodos.setOnAction(
-                            new EventHandler() {///// Funcion de la opcion de Eliminar Todos
+                    childEliminarUno.setOnAction(new EventHandler() {///// Funcion de la opcion de Eliminar Uno Solo por busqueda
                         @Override
-                        public void handle(Event t /////While o for para que borre todos?
-                        ) {
+                        public void handle(Event t) {        ////falta agregar que borre carpeta de verdad
                             TreeItem<String> selected = getTreeItem();
-                            selected.getParent().getChildren().remove(null);
+                        }               ///// FALTA ELIMINAR POR BUSQUEDA
+                    });         
+                    
+                    childEliminarTodos.setOnAction(new EventHandler() {///// Funcion de la opcion de Eliminar Todos
+                        @Override
+                        public void handle(Event t) {                                   /////While o for para que borre todos?
+                            NodoPrincipal.getChildren().removeAll(nodeA, nodeB, nodeC);           ///// usar mismo while de lectura para que borre cada 1
                         }
-                    }
-                    );
+                    });
                 }
-                /////////////////////// Menu de opciones en cada nodo //////////////////////
 
+/////////////////////// Menu de opciones en cada nodo //////////////////////
                 @Override
-                public void updateItem(String item, boolean empty
-                ) {
+                public void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
 
                     if (empty) {
