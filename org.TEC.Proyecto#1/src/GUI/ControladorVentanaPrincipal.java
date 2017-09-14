@@ -132,14 +132,14 @@ public class ControladorVentanaPrincipal implements Initializable {
                     Buscar.setOnAction(new EventHandler() {///// Funcion de la opcion de Busqueda
                         @Override
                         public void handle(Event t) {
-                            ProgramaPrincipal.MostrarVentanaBusqueda();
+                            ProgramaPrincipal.CreadorDeVentanas("VentanaBusqueda");
                         }
                     });
 
                     Actualizar.setOnAction(new EventHandler() {///// Funcion de la opcion de Actualizacion
                         @Override
                         public void handle(Event t) {
-                            ProgramaPrincipal.MostrarVentanaActualizacion();
+                            ProgramaPrincipal.CreadorDeVentanas("Actualizacion()");
                         }
                     });
 
@@ -153,7 +153,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                     childNuevoCurso.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Curso
                         @Override
                         public void handle(Event t) {
-                            ProgramaPrincipal.MostrarVentanaNuevoCurso();       ///// lectura de entry para nombre de nuevo documento
+                            ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoCurso()");       ///// lectura de entry para nombre de nuevo documento
                             TreeItem NuevoCurso = new TreeItem<String>("Nuevo Curso");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
                             NodoPrincipal.getChildren().add(NuevoCurso);
                         }
@@ -162,7 +162,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                     childNuevoEstudiante.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Objeto
                         @Override
                         public void handle(Event t) {
-                            ProgramaPrincipal.MostrarVentanaNuevoEstudiante();            ///// lectura de entry para nombre de nuevo documento
+                            ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoEstudiante()");            ///// lectura de entry para nombre de nuevo documento
                             TreeItem NuevoEstudiante = new TreeItem<String>("Nuevo Estudiante");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
                             getTreeItem().getChildren().add(NuevoEstudiante);
                         }
