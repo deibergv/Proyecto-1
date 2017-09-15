@@ -138,7 +138,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                     Actualizar.setOnAction(new EventHandler() {///// Funcion de la opcion de Actualizacion
                         @Override
                         public void handle(Event t) {
-                            ProgramaPrincipal.CreadorDeVentanas("Actualizacion");
+                            ProgramaPrincipal.CreadorDeVentanas("VentanaActualizacion");
                         }
                     });
 
