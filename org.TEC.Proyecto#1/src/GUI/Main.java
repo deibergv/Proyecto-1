@@ -1,5 +1,6 @@
 package GUI;
 
+import Json.Metadata;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -76,6 +77,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         System.out.println("Antes del launch");                             /////////////// BORRAR LUEGO///////
         launch(args);
+        System.out.println(Metadata.StringToStore(STYLESHEET_MODENA));
     }
 
 }
