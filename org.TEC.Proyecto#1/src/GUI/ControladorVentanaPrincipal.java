@@ -43,7 +43,7 @@ public class ControladorVentanaPrincipal implements Initializable {
 
     //////////////////////////////////////Iconos////////////////////////////////
     Image IconFolder = new Image(
-            getClass().getResourceAsStream("/img/folder.gif"));
+            getClass().getResourceAsStream("/GUI/Img/folder.gif"));
 
     @FXML /////////////////////////////ARBOL////////////////////////////////////
     TreeView<String> treeView;
@@ -138,7 +138,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                     Actualizar.setOnAction(new EventHandler() {///// Funcion de la opcion de Actualizacion
                         @Override
                         public void handle(Event t) {
-                            ProgramaPrincipal.CreadorDeVentanas("Actualizacion()");
+                            ProgramaPrincipal.CreadorDeVentanas("Actualizacion");
                         }
                     });
 
@@ -152,7 +152,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                     childNuevoCurso.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Curso
                         @Override
                         public void handle(Event t) {
-                            ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoCurso()");       ///// lectura de entry para nombre de nuevo documento
+                            ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoCurso");       ///// lectura de entry para nombre de nuevo documento
                             TreeItem NuevoCurso = new TreeItem<String>("Nuevo Curso");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
                             NodoPrincipal.getChildren().add(NuevoCurso);
                         }
@@ -161,7 +161,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                     childNuevoEstudiante.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Objeto
                         @Override
                         public void handle(Event t) {
-                            ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoEstudiante()");            ///// lectura de entry para nombre de nuevo documento
+                            ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoEstudiante");            ///// lectura de entry para nombre de nuevo documento
                             TreeItem NuevoEstudiante = new TreeItem<String>("Nuevo Estudiante");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
                             getTreeItem().getChildren().add(NuevoEstudiante);
                         }
