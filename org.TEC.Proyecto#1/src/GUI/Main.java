@@ -71,8 +71,6 @@ public class Main extends Application {
     public void start(Stage stagePrincipal) throws Exception {
         this.stagePrincipal = stagePrincipal;
         CreadorDeVentanas("VentanaPrincipal");
-        
-        CreadorDeVentanas("VentanaBusqueda");
     }
 
     public static void main(String[] args) {

@@ -96,7 +96,7 @@ public class ControladorVentanaPrincipal implements Initializable {
             class OpcionesClickDerecho extends TextFieldTreeCell<String> {
 
                 private final ContextMenu contextMenu = new ContextMenu();
-                private TextField textField;
+//                private TextField textField;
 
                 public OpcionesClickDerecho() {
 
@@ -200,22 +200,22 @@ public class ControladorVentanaPrincipal implements Initializable {
                     super.updateItem(item, empty);
 
                     if (empty) {
-                        setText(null);
+//                        setText(null);
                         setGraphic(null);
                     } else {
-                        if (isEditing()) {
-                            if (textField != null) {
-                                textField.setText(getString());
-                            }
-                            setText(null);
-                            setGraphic(textField);
-                        } else {
-                            setText(getString());
+//                        if (isEditing()) {
+//                            if (textField != null) {
+//                                textField.setText(getString());
+//                            }
+//                            setText(null);
+//                            setGraphic(textField);
+//                        } else {
+//                            setText(getString());
                             setGraphic(getTreeItem().getGraphic());
                             if (!getTreeItem().isLeaf() && getTreeItem().getParent() != null) {
-                                setContextMenu(contextMenu);
-                            }
-                        }
+                                setContextMenu(contextMenu);}
+//                            }
+//                        }
                         if (!empty && getTreeItem().getParent() == null) {
                             setContextMenu(contextMenu);
                         }
@@ -223,47 +223,46 @@ public class ControladorVentanaPrincipal implements Initializable {
                 }
 
 //////////////////////////////// Implementacion de edicion de nombres en Arbol (no se guardan cambios) ////////////////////////////// 
-                @Override
-                public void startEdit() {
-                    super.startEdit();
-                    if (textField == null) {
-                        createTextField();
-                    }
-                    setText(null);
-                    setGraphic(textField);
-                    textField.selectAll();
-                }
-
-                @Override
-                public void cancelEdit() {
-                    super.cancelEdit();
-                    setText((String) getItem());
-                    setGraphic(getTreeItem().getGraphic());
-                }
-
-                private void createTextField() {
-                    textField = new TextField(getString());
-                    textField.setOnKeyReleased(new EventHandler<KeyEvent>() {
-                        @Override
-                        public void handle(KeyEvent t) {
-                            if (t.getCode() == KeyCode.ENTER) {
-                                commitEdit(textField.getText());
-                            } else if (t.getCode() == KeyCode.ESCAPE) {
-                                cancelEdit();
-                            }
-                        }
-                    });
-                }
-
-                private String getString() {
-                    return getItem() == null ? "" : getItem().toString();
-                }
+//                @Override
+//                public void startEdit() {
+//                    super.startEdit();
+//                    if (textField == null) {
+//                        createTextField();
+//                    }
+//                    setText(null);
+//                    setGraphic(textField);
+//                    textField.selectAll();
+//                }
+//
+//                @Override
+//                public void cancelEdit() {
+//                    super.cancelEdit();
+//                    setText((String) getItem());
+//                    setGraphic(getTreeItem().getGraphic());
+//                }
+//
+//                private void createTextField() {
+//                    textField = new TextField(getString());
+//                    textField.setOnKeyReleased(new EventHandler<KeyEvent>() {
+//                        @Override
+//                        public void handle(KeyEvent t) {
+//                            if (t.getCode() == KeyCode.ENTER) {
+//                                commitEdit(textField.getText());
+//                            } else if (t.getCode() == KeyCode.ESCAPE) {
+//                                cancelEdit();
+//                            }
+//                        }
+//                    });
+//                }
+//
+//                private String getString() {
+//                    return getItem() == null ? "" : getItem().toString();
+//                }
+//            }
             }
-
             @Override
             public TreeCell<String> call(TreeView<String> arg0) {
-                return new OpcionesClickDerecho();
-            }
+                return new OpcionesClickDerecho();}
         });
     }
 }
