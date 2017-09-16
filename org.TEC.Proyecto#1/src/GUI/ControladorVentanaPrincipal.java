@@ -186,10 +186,17 @@ public class ControladorVentanaPrincipal implements Initializable {
                         }               ///// FALTA ELIMINAR POR BUSQUEDA
                     });
 
-                    childEliminarTodos.setOnAction(new EventHandler() {///// Funcion de la opcion de Eliminar Todos
+                    childEliminarTodos.setOnAction(new EventHandler() {///// Funcion de la opcion de Eliminar Todos los archivos de una carpeta
                         @Override
-                        public void handle(Event t) {                                   /////While o for para que borre todos?
-                            NodoPrincipal.getChildren().removeAll(nodeA, nodeB, nodeC);           ///// usar mismo while de lectura para que borre cada 1
+                        public void handle(Event t) {
+                            TreeItem<String> selected = getTreeItem();
+//                            if (selected.getChildren==null){
+//                          JOptionPane.showMessageDialog(null, "Carpeta vacia", "Error", JOptionPane.WARNING_MESSAGE);
+//                            if (selected have childrens){
+//                            while selected.getChildren()!=null
+//                                    selected.getChildren().remove
+//                           }}else{
+//                                  }
                         }
                     });
                 }
