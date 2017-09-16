@@ -43,22 +43,33 @@ public class Main extends Application {
                 ventana.initOwner(stagePrincipal);
                 Scene scene = new Scene(ventanaDos);
                 ventana.setScene(scene);
-                if ("VentanaBusqueda".equals(NombreDeVentana)) {
-                    ventana.setTitle("Busqueda");
-                    ControladorVentanaBusqueda controller = loader.getController();
-                    controller.setStagePrincipal(ventana);
-                } else if ("VentanaActualizacion".equals(NombreDeVentana)) {
-                    ventana.setTitle("Actualizacion");
-                    ControladorVentanaActualizacion controller = loader.getController();
-                    controller.setStagePrincipal(ventana);
-                } else if ("VentanaNuevoCurso".equals(NombreDeVentana)) {
-                    ventana.setTitle("Nuevo Curso");
-                    ControladorVentanaNuevoCurso controller = loader.getController();        ///// cambiar titulos
-                    controller.setStagePrincipal(ventana);
-                } else if ("VentanaNuevoEstudiante".equals(NombreDeVentana)) {
-                    ventana.setTitle("Nuevo Estudiante");
-                    ControladorVentanaNuevoEstudiante controller = loader.getController();
-                    controller.setStagePrincipal(ventana);
+                if (null != NombreDeVentana) switch (NombreDeVentana) {
+                    case "VentanaBusqueda":{
+                        ventana.setTitle("Busqueda");
+                        ControladorVentanaBusqueda controller = loader.getController();
+                        controller.setStagePrincipal(ventana);
+                            break;
+                        }
+                    case "VentanaActualizacion":{
+                        ventana.setTitle("Actualizacion");
+                        ControladorVentanaActualizacion controller = loader.getController();
+                        controller.setStagePrincipal(ventana);
+                            break;
+                        }
+                    case "VentanaNuevoCurso":{
+                        ventana.setTitle("Nuevo Curso");
+                        ControladorVentanaNuevoCurso controller = loader.getController();        ///// cambiar titulos
+                        controller.setStagePrincipal(ventana);
+                            break;
+                        }
+                    case "VentanaNuevoEstudiante":{
+                        ventana.setTitle("Nuevo Estudiante");
+                        ControladorVentanaNuevoEstudiante controller = loader.getController();
+                        controller.setStagePrincipal(ventana);
+                            break;
+                        }
+                    default:
+                        break;
                 }
                 ventana.show();
             } catch (IOException ex) {
@@ -76,13 +87,5 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        String username = System.getProperty("user.name");
-        String filename = "/home/Documents/" + username + ".txt";
-        Crear.NuevoJson(filename);
-        System.out.println(username);
-        System.out.println(filename);
-
-        Crear.NuevoJson("filename");
-        Crear.CrearCarpeta("Test");
     }
 }
