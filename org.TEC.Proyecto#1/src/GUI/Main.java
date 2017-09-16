@@ -1,5 +1,6 @@
 package GUI;
 
+import Json.Crear;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -74,7 +75,14 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("Antes del launch");                             /////////////// BORRAR LUEGO///////
         launch(args);
+        String username = System.getProperty("user.name");
+        String filename = "/home/Documents/" + username + ".txt";
+        Crear.NuevoJson(filename);
+        System.out.println(username);
+        System.out.println(filename);
+
+        Crear.NuevoJson("filename");
+        Crear.CrearCarpeta("Test");
     }
 }
