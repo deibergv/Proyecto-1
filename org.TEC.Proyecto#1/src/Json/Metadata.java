@@ -11,13 +11,13 @@ public class Metadata {
     private String Requerido;
     private String Defecto;
 
-    public Metadata(String atributo, String valor, String nombre, String defecto, String requerido, String store) {
+    public Metadata(String store, String atributo, String valor, String nombre, String requerido, String defecto) {
         this.StoreName = store;
         this.Atributo = atributo;
         this.Valor = valor;
         this.Nombre = nombre;
-        this.Defecto = defecto;
         this.Requerido = requerido;
+        this.Defecto = defecto;
     }
 
     public String getStoreName() {
@@ -91,11 +91,16 @@ public class Metadata {
         return new Metadata(array[0], array[1], array[2], array[3], array[4], array[5]);
     }
 
-//    public String StoreToString(String Store) {
-//        String StoreToString = "";
-//        StoreToString += Store.get();
-//        
-//        
-//    
-//    }
+    public String StoreToString(Metadata Store) {
+        String StoreToString = "";
+
+        StoreToString += Store.getStoreName();
+        StoreToString += ("-" + Store.getAtributo());
+        StoreToString += ("-" + Store.getValor());
+        StoreToString += ("-" + Store.getNombre());
+        StoreToString += ("-" + Store.getRequerido());
+        StoreToString += ("-" + Store.getDefecto());
+
+        return StoreToString;
+    }
 }
