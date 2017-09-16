@@ -20,7 +20,7 @@ public class ListaDoble<T extends Comparable<T>> {
         this.primero = primero;
     }
 
-    public void insertar(T valor) {
+    public void Insertar(T valor) {
         if (this.primero == null) {
             this.primero = new Nodo<T>(valor);
             return;
@@ -35,7 +35,7 @@ public class ListaDoble<T extends Comparable<T>> {
         
     }
 
-    public void imprimir() {
+    public void Imprimir() {
         Nodo<T> actual = this.primero;
         while (actual != null) {
             System.out.println(actual.getValor());
@@ -43,17 +43,7 @@ public class ListaDoble<T extends Comparable<T>> {
         }
     }
 
-//    public void insertarInicio(T valor) {
-//        if (this.primero == null) {
-//            this.primero = new Nodo<T>(valor);
-//        } else {
-//            Nodo<T> nuevo = new Nodo<T>(valor);
-//            this.primero.setAnterior(nuevo);
-//            this.primero = this.primero.getAnterior();
-//        }
-//    }
-
-    public Nodo<T> buscar(T buscado) {
+    public Nodo<T> Buscar(T buscado) {
         Nodo<T> actual = this.primero;
         while (actual != null) {
             if (actual.getValor().compareTo(buscado) == 0) {
