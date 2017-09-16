@@ -1,6 +1,5 @@
 package GUI;
 
-import Json.Crear;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -43,33 +42,35 @@ public class Main extends Application {
                 ventana.initOwner(stagePrincipal);
                 Scene scene = new Scene(ventanaDos);
                 ventana.setScene(scene);
-                if (null != NombreDeVentana) switch (NombreDeVentana) {
-                    case "VentanaBusqueda":{
-                        ventana.setTitle("Busqueda");
-                        ControladorVentanaBusqueda controller = loader.getController();
-                        controller.setStagePrincipal(ventana);
+                if (null != NombreDeVentana) {
+                    switch (NombreDeVentana) {
+                        case "VentanaBusqueda": {
+                            ventana.setTitle("Busqueda");
+                            ControladorVentanaBusqueda controller = loader.getController();
+                            controller.setStagePrincipal(ventana);
                             break;
                         }
-                    case "VentanaActualizacion":{
-                        ventana.setTitle("Actualizacion");
-                        ControladorVentanaActualizacion controller = loader.getController();
-                        controller.setStagePrincipal(ventana);
+                        case "VentanaActualizacion": {
+                            ventana.setTitle("Actualizacion");
+                            ControladorVentanaActualizacion controller = loader.getController();
+                            controller.setStagePrincipal(ventana);
                             break;
                         }
-                    case "VentanaNuevoCurso":{
-                        ventana.setTitle("Nuevo Curso");
-                        ControladorVentanaNuevoCurso controller = loader.getController();        ///// cambiar titulos
-                        controller.setStagePrincipal(ventana);
+                        case "VentanaNuevoCurso": {
+                            ventana.setTitle("Nuevo Curso");
+                            ControladorVentanaNuevoCurso controller = loader.getController();
+                            controller.setStagePrincipal(ventana);
                             break;
                         }
-                    case "VentanaNuevoEstudiante":{
-                        ventana.setTitle("Nuevo Estudiante");
-                        ControladorVentanaNuevoEstudiante controller = loader.getController();
-                        controller.setStagePrincipal(ventana);
+                        case "VentanaNuevoEstudiante": {
+                            ventana.setTitle("Nuevo Estudiante");
+                            ControladorVentanaNuevoEstudiante controller = loader.getController();
+                            controller.setStagePrincipal(ventana);
                             break;
                         }
-                    default:
-                        break;
+                        default:
+                            break;
+                    }
                 }
                 ventana.show();
             } catch (IOException ex) {
@@ -86,6 +87,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        Json.RutaBase.CrearCarpetaBase();
         launch(args);
     }
 }
