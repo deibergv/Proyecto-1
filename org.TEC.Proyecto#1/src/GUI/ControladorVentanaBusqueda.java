@@ -25,7 +25,7 @@ public class ControladorVentanaBusqueda implements Initializable {
     @FXML /////////////////////////////TABLA////////////////////////////////////
     private TableView<Tabla> table;
     @FXML
-    private TableColumn<Tabla, Integer> carne;
+    private TableColumn<Tabla, String> carne;
     @FXML
     private TableColumn<Tabla, String> nombre;
     @FXML
@@ -34,17 +34,18 @@ public class ControladorVentanaBusqueda implements Initializable {
     private TextField filterField;
     
     public ObservableList<Tabla> list = FXCollections.observableArrayList(
+//            String[] array = Json.Metadata.StoreToString(Json.Metadata.StringToStore("a-b-c-d-f-g")).split("-",0));
             //while montaje de datos a la tabla
-            new Tabla(2017159397, "Deiber", "CE"),
-            new Tabla(123, "Pedro", "Cuenta vacas"),
-            new Tabla(456, "Leiner", "Biotecnologia"),
-            new Tabla(678, "Felipe", "Computacion")
+            new Tabla("2017159397", Json.LecturaDeJson.LecturaJson("Archivo Json", "Nombre"), "CE"),
+            new Tabla("123", "Pedro", "Cuenta vacas"),
+            new Tabla("456", "Leiner", "Biotecnologia"),
+            new Tabla("678", "Felipe", "Computacion")
     );
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     ///////////////////////////////////tabla////////////////////////////////////////
-        carne.setCellValueFactory(new PropertyValueFactory<Tabla, Integer>("carne"));
+        carne.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carne"));
         nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));
         carrera.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carrera"));
         table.setItems(list);

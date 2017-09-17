@@ -79,28 +79,34 @@ public class Metadata {
                     Float.parseFloat(getValor());
                     break;
             }
+        } catch (RuntimeException e) {
+            System.out.print("RuntimeException: ");
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Problema con la validacion de los Datos", "Error", JOptionPane.WARNING_MESSAGE);//////////////
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Problema con la validacion", "Error", JOptionPane.WARNING_MESSAGE);
+            System.out.print("Exception: ");
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Problema con la validacion de los Datos", "Error", JOptionPane.WARNING_MESSAGE);/////////////////
         }
         return getValor();
     }
 
-    public static Metadata StringToStore(String valor) {
-        //String = nombre-valor-atributo-defecto-requiered-storename
-        String[] array = valor.split("-", 0);
+    public static Metadata StringToStore(String Dato) {
+        //Orden = StoreName-atributo-valor-nombre-requerido-defecto
+        String[] array = Dato.split("-", 0);
         return new Metadata(array[0], array[1], array[2], array[3], array[4], array[5]);
     }
 
-    public String StoreToString(Metadata Store) {
+    public static String StoreToString(Metadata Store) {
         String StoreToString = "";
-
         StoreToString += Store.getStoreName();
         StoreToString += ("-" + Store.getAtributo());
         StoreToString += ("-" + Store.getValor());
         StoreToString += ("-" + Store.getNombre());
         StoreToString += ("-" + Store.getRequerido());
         StoreToString += ("-" + Store.getDefecto());
-
         return StoreToString;
     }
+//string a = "StoreName-atributo-valor-nombre-requerido-defecto";
+    
 }

@@ -9,13 +9,13 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -23,8 +23,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTreeCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import javax.swing.JOptionPane;
 
@@ -37,8 +35,12 @@ public class ControladorVentanaPrincipal implements Initializable {
     }
 
     @FXML
+    private Button Commit;
+
+    @FXML
     private void Commit(ActionEvent event) {
         System.out.println("Commit");
+        Commit.setDisable(true);                                                //// Desactiva el boton
     }
 
     //////////////////////////////////////Iconos////////////////////////////////
@@ -59,7 +61,7 @@ public class ControladorVentanaPrincipal implements Initializable {
 
     public ObservableList<Tabla> list = FXCollections.observableArrayList(
             //while montaje de datos a la tabla
-            new Tabla(2017159397, "Deiber", "CE")
+            new Tabla("2017159397", "Deiber", "CE")
     );
 
     @Override
@@ -96,7 +98,6 @@ public class ControladorVentanaPrincipal implements Initializable {
             class OpcionesClickDerecho extends TextFieldTreeCell<String> {
 
                 private final ContextMenu contextMenu = new ContextMenu();
-//                private TextField textField;
 
                 public OpcionesClickDerecho() {
 
@@ -139,6 +140,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                         @Override
                         public void handle(Event t) {
                             ProgramaPrincipal.CreadorDeVentanas("VentanaActualizacion");
+                            Commit.setDisable(false);                               ////Activacion de Commit
                         }
                     });
 
@@ -155,6 +157,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                             ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoCurso");       ///// lectura de entry para nombre de nuevo documento
                             TreeItem NuevoCurso = new TreeItem<String>("Nuevo Curso");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
                             NodoPrincipal.getChildren().add(NuevoCurso);
+                            Commit.setDisable(false);                               ////Activacion de Commit
                         }
                     });
 
@@ -164,6 +167,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                             ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoEstudiante");            ///// lectura de entry para nombre de nuevo documento
                             TreeItem NuevoEstudiante = new TreeItem<String>("Nuevo Estudiante");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
                             getTreeItem().getChildren().add(NuevoEstudiante);
+                            Commit.setDisable(false);                               ////Activacion de Commit
                         }
                     });
 
@@ -175,6 +179,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                                 JOptionPane.showMessageDialog(null, "El Sistema de almacenamiento Base no puede ser eliminado", "Error", JOptionPane.WARNING_MESSAGE);
                             } else {
                                 getTreeItem().getParent().getChildren().remove(getTreeItem());
+                                Commit.setDisable(false);                               ////Activacion de Commit
                             }
                         }
                     });
@@ -190,6 +195,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                         @Override
                         public void handle(Event t) {
                             TreeItem<String> selected = getTreeItem();
+                            Commit.setDisable(false);                               ////Activacion de Commit
 //                            if (selected.getChildren==null){
 //                          JOptionPane.showMessageDialog(null, "Carpeta vacia", "Error", JOptionPane.WARNING_MESSAGE);
 //                            if (selected have childrens){
@@ -207,69 +213,22 @@ public class ControladorVentanaPrincipal implements Initializable {
                     super.updateItem(item, empty);
 
                     if (empty) {
-//                        setText(null);
                         setGraphic(null);
                     } else {
-//                        if (isEditing()) {
-//                            if (textField != null) {
-//                                textField.setText(getString());
-//                            }
-//                            setText(null);
-//                            setGraphic(textField);
-//                        } else {
-//                            setText(getString());
-                            setGraphic(getTreeItem().getGraphic());
-                            if (!getTreeItem().isLeaf() && getTreeItem().getParent() != null) {
-                                setContextMenu(contextMenu);}
-//                            }
-//                        }
+                        setGraphic(getTreeItem().getGraphic());
+                        if (!getTreeItem().isLeaf() && getTreeItem().getParent() != null) {
+                            setContextMenu(contextMenu);
+                        }
                         if (!empty && getTreeItem().getParent() == null) {
                             setContextMenu(contextMenu);
                         }
                     }
                 }
-
-//////////////////////////////// Implementacion de edicion de nombres en Arbol (no se guardan cambios) ////////////////////////////// 
-//                @Override
-//                public void startEdit() {
-//                    super.startEdit();
-//                    if (textField == null) {
-//                        createTextField();
-//                    }
-//                    setText(null);
-//                    setGraphic(textField);
-//                    textField.selectAll();
-//                }
-//
-//                @Override
-//                public void cancelEdit() {
-//                    super.cancelEdit();
-//                    setText((String) getItem());
-//                    setGraphic(getTreeItem().getGraphic());
-//                }
-//
-//                private void createTextField() {
-//                    textField = new TextField(getString());
-//                    textField.setOnKeyReleased(new EventHandler<KeyEvent>() {
-//                        @Override
-//                        public void handle(KeyEvent t) {
-//                            if (t.getCode() == KeyCode.ENTER) {
-//                                commitEdit(textField.getText());
-//                            } else if (t.getCode() == KeyCode.ESCAPE) {
-//                                cancelEdit();
-//                            }
-//                        }
-//                    });
-//                }
-//
-//                private String getString() {
-//                    return getItem() == null ? "" : getItem().toString();
-//                }
-//            }
             }
             @Override
             public TreeCell<String> call(TreeView<String> arg0) {
-                return new OpcionesClickDerecho();}
+                return new OpcionesClickDerecho();
+            }
         });
     }
 }

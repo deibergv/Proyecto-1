@@ -7,27 +7,32 @@ import java.io.IOException;
 
 public class LecturaDeJson {
 
-    public void LecturaJson() {
+    public static String LecturaJson(String NombreDeArchivo, String Dato) {
+       
         try {
             Gson gson = new Gson();
-            BufferedReader br = new BufferedReader(new FileReader("/home/deiber/json.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(RutaBase.RutaBase() + NombreDeArchivo + ".txt"));
             Json.Metadata Lectura = gson.fromJson(br, Json.Metadata.class);
 
-            //Printing the Employee Details
-            System.out.println("StoreName      : " + Lectura.getStoreName());
-            System.out.println("Atributo       : " + Lectura.getAtributo());
-            System.out.println("Valor          : " + Lectura.getValor());
-            System.out.println("Nombre         : " + Lectura.getNombre());
-            System.out.println("Requerido      : " + Lectura.getRequerido());
-            System.out.println("Defecto        : " + Lectura.getDefecto());
-
-            System.out.print("");
-//            for(String department : key.getStoreName())
-//            {
-//                System.out.print(department+" | ");
-//            }
+            if (null != Dato) switch (Dato) {
+                case "StoreName":
+                    return Lectura.getStoreName();
+                case "Atributo":
+                    return Lectura.getAtributo();
+                case "Valor":
+                    return Lectura.getValor();
+                case "Nombre":
+                    return Lectura.getNombre();
+                case "Requerido":
+                    return Lectura.getRequerido();
+                case "Defecto":
+                    return Lectura.getDefecto();
+                default:
+                    break;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
