@@ -9,7 +9,7 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="lib/gson-2.8.1.jar" size="232620" download="eager" />
-    <jar href="org.TEC.Proyecto#1.jar" size="39436" download="eager" />
+    <jar href="org.TEC.Proyecto#1.jar" size="39538" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="org.TEC.Proyecto#1" >
     <param name="requiredFXVersion" value="8.0+"/>

@@ -1,7 +1,6 @@
 package GUI;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTreeCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
 import javafx.util.Callback;
 import javax.swing.JOptionPane;
 
@@ -62,7 +62,7 @@ public class ControladorVentanaPrincipal implements Initializable {
     private TableColumn<Tabla, String> carrera;
 
     public ObservableList<Tabla> list = FXCollections.observableArrayList(
-            //while montaje de datos a la tabla
+                                                                                            //while montaje de datos a la tabla
             new Tabla("2017159397", "Deiber", "CE")
     );
 
@@ -76,9 +76,9 @@ public class ControladorVentanaPrincipal implements Initializable {
         TreeItem<String> nodeC = new TreeItem<>("node C", new ImageView(IconFolder));
 
         NodoPrincipal.getChildren().addAll(nodeA, nodeB, nodeC);
-        ////////// o se puede separar cada uno: ///////////
-        //LinkedDB.getChildren().add(nodeB);
-        //LinkedDB.getChildren().add(nodeC);
+                                                                    ////////// o se puede separar cada uno: ///////////
+                                                                    //LinkedDB.getChildren().add(nodeB);
+                                                                    //LinkedDB.getChildren().add(nodeC);
 
         TreeItem<String> nodeA1 = new TreeItem<>("Juan");
         TreeItem<String> nodeB1 = new TreeItem<>("Isaac");
@@ -104,7 +104,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                 public OpcionesClickDerecho() {
 
                     MenuItem Buscar = new MenuItem("Buscar");
-                    //Buscar.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));
+                    Buscar.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));
                     MenuItem Actualizar = new MenuItem("Actualizar Estudiante");
                     //Actualizar.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
                     SeparatorMenuItem separador1 = new SeparatorMenuItem();
