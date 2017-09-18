@@ -26,6 +26,7 @@ public class Eliminar {
         } else {
             JOptionPane.showMessageDialog(null, "Carpeta no encontrada", "Error", JOptionPane.WARNING_MESSAGE);
         }
+        JOptionPane.showMessageDialog(null, "Archivos eliminados de forma exitosa", null, JOptionPane.INFORMATION_MESSAGE);////////////////////////
     }
 
     public static void VaciarCarpeta(File Carpeta) {

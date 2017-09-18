@@ -35,10 +35,10 @@ public class Crear {
                 }
     }
 
-    public static void Archivo(String NombreDelJson) {           // FALTA dirigir a carpeta a donde va a ir
+    public static void Archivo(String NombreDelJson, Metadata Nuevo) {           // FALTA dirigir a carpeta a donde va a ir
 
         try {
-            Metadata Nuevo = new Metadata("a", "b", "c", "d", "f", "g");        //ingreso de informacion al nuevo Json
+//            Metadata Nuevo = new Metadata("a", "b", "c", "d", "f", "g");        //ingreso de informacion al nuevo Json
             Gson gson = new Gson();
             String jsonString = gson.toJson(Nuevo);                             // VARIABLE CON INFORMACION
 

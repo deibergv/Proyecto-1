@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class ControladorVentanaBusqueda implements Initializable {
 
     private Stage stagePrincipal;
-    
+
     public void setStagePrincipal(Stage stagePrincipal) {
         this.stagePrincipal = stagePrincipal;
     }
@@ -33,26 +33,26 @@ public class ControladorVentanaBusqueda implements Initializable {
     private TableColumn<Tabla, String> carrera;
     @FXML
     private TextField filterField;
-    
+
     public ObservableList<Tabla> list = FXCollections.observableArrayList(
-//            String[] array = Json.Metadata.StoreToString(Json.Metadata.StringToStore("a-b-c-d-f-g")).split("-",0));
-            new Tabla("213",MontajeDeDatos.MontajeDeDatos("Nombre"),"CE"),
+            //String[] array = Json.Metadata.StoreToString(Json.Metadata.StringToStore("a-b-c-d-f-g")).split("-",0));
+            new Tabla(MontajeDeDatos.MontajeDeDatos("StoreName"), MontajeDeDatos.MontajeDeDatos("Nombre"), MontajeDeDatos.MontajeDeDatos("Atributo")),
             new Tabla("123", "Pedro", "Cuenta vacas"),
             new Tabla("456", "Leiner", "Biotecnologia"),
             new Tabla("678", "Felipe", "Computacion")
     );
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    ///////////////////////////////////tabla////////////////////////////////////////
+        ///////////////////////////////////tabla////////////////////////////////////////
         carne.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carne"));
         nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));
         carrera.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carrera"));
         table.setItems(list);
 
-        FilteredList<Tabla> filteredData = new FilteredList<>(list, p -> true);
+        FilteredList<Tabla> DatosFiltrados = new FilteredList<>(list, p -> true); /////////////// Filtrado de tabla para solo mostrar lo buscado
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(estudiante -> {
+            DatosFiltrados.setPredicate(estudiante -> {
                 // Si el filtro de busqueda esta vacio, muestra todo
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
@@ -68,9 +68,9 @@ public class ControladorVentanaBusqueda implements Initializable {
                 }
                 return false;
             });
-        }); 
-        SortedList<Tabla> DatosFiltrados = new SortedList<>(filteredData);
-        DatosFiltrados.comparatorProperty().bind(table.comparatorProperty());
-        table.setItems(DatosFiltrados);
+        });
+        SortedList<Tabla> ListaDeDatosFiltrados = new SortedList<>(DatosFiltrados);
+        ListaDeDatosFiltrados.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(ListaDeDatosFiltrados);
     }
 }
