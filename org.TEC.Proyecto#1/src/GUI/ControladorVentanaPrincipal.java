@@ -157,12 +157,8 @@ public class ControladorVentanaPrincipal implements Initializable {
 //                            ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoStore");       ///// lectura de entry para nombre de nuevo documento
 //                            TreeItem NuevoStore = new TreeItem<String>("Nuevo Store");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
 //                            NodoPrincipal.getChildren().add(NuevoStore);
-//
-//
-//
 //                            Commit.EscrituraCommit("Json.Crear.Store()");
 //                            Commit.EscrituraParametro("TEST");//                  ademas ligarlo a lista
-//
 //                            BCommit.setDisable(false);                               ////Activacion de Commit
 //                        }
 //                    });
