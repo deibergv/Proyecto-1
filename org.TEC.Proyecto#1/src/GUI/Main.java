@@ -56,9 +56,9 @@ public class Main extends Application {
                             controller.setStagePrincipal(ventana);
                             break;
                         }
-                        case "VentanaNuevoCurso": {
-                            ventana.setTitle("Nuevo Curso");
-                            ControladorVentanaNuevoCurso controller = loader.getController();
+                        case "VentanaNuevoStore": {
+                            ventana.setTitle("Nuevo Store");
+                            ControladorVentanaNuevoStore controller = loader.getController();
                             controller.setStagePrincipal(ventana);
                             break;
                         }

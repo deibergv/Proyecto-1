@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="116.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControladorVentanaNuevoStore">
+<children>
+      <VBox layoutX="18.0" layoutY="30.0" prefHeight="25.0" prefWidth="505.0">
+         <children>
+            <HBox prefHeight="25.0" prefWidth="511.0" spacing="15.0">
+               <children>
+                  <Label prefHeight="15.0" prefWidth="129.0" text="Nombre del Store:" />
+                  <TextField fx:id="Texto" prefHeight="25.0" prefWidth="342.0">
+                     <opaqueInsets>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </opaqueInsets>
+                  </TextField>
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+            </HBox>
+         </children>
+      </VBox>
+        <Button fx:id="button" layoutX="287.0" layoutY="78.0" onAction="#salirVentana" text="Cancelar" />
+      <Button fx:id="Aceptar" layoutX="193.0" layoutY="78.0" onAction="#Aceptar" text="Aceptar" />
+    </children>
+</AnchorPane>

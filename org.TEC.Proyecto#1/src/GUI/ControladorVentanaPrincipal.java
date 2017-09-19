@@ -1,5 +1,6 @@
 package GUI;
 
+import Json.Crear;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -62,7 +63,7 @@ public class ControladorVentanaPrincipal implements Initializable {
     private TableColumn<Tabla, String> carrera;
 
     public ObservableList<Tabla> list = FXCollections.observableArrayList(
-                                                                                            //while montaje de datos a la tabla
+            //while montaje de datos a la tabla
             new Tabla("2017159397", "Deiber", "CE")
     );
 
@@ -76,9 +77,9 @@ public class ControladorVentanaPrincipal implements Initializable {
         TreeItem<String> nodeC = new TreeItem<>("node C", new ImageView(IconFolder));
 
         NodoPrincipal.getChildren().addAll(nodeA, nodeB, nodeC);
-                                                                    ////////// o se puede separar cada uno: ///////////
-                                                                    //LinkedDB.getChildren().add(nodeB);
-                                                                    //LinkedDB.getChildren().add(nodeC);
+        ////////// o se puede separar cada uno: ///////////
+        //LinkedDB.getChildren().add(nodeB);
+        //LinkedDB.getChildren().add(nodeC);
 
         TreeItem<String> nodeA1 = new TreeItem<>("Juan");
         TreeItem<String> nodeB1 = new TreeItem<>("Isaac");
@@ -112,28 +113,26 @@ public class ControladorVentanaPrincipal implements Initializable {
                     //Mostrar.setAccelerator(KeyCombination.keyCombination("Ctrl+M"));
                     Menu MenuNuevo = new Menu("Nuevo");
                     //Nuevo.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
-                    MenuItem childNuevoCurso = new MenuItem("Nuevo Curso");
+                    MenuItem childNuevoStore = new MenuItem("Nuevo Store");
                     //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
                     MenuItem childNuevoEstudiante = new MenuItem("Nuevo Estudiante");
                     //childEliminarTodos.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+N"));
-                    MenuNuevo.getItems().addAll(childNuevoCurso, childNuevoEstudiante);
+                    MenuNuevo.getItems().addAll(childNuevoStore, childNuevoEstudiante);
                     SeparatorMenuItem separador2 = new SeparatorMenuItem();
                     Menu MenuEliminar = new Menu("Eliminar");
                     MenuItem childEliminarSeleccionado = new MenuItem("Eliminar Curso o Estudiante seleccionado");////////////////EXTRA///////////
                     //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Delete"));                    ////////////////////////////
-                    MenuItem childEliminarUno = new MenuItem("Eliminar un Estudiante");
-                    //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Ctrl+Delete"));
                     MenuItem childEliminarTodos = new MenuItem("Eliminar todos los Estudiantes");
                     //childEliminarTodos.setAccelerator(KeyCombination.keyCombination("Shift+Delete"));
 ////////////////////MenuEliminar.getItems().addAll(childEliminarUno, childEliminarTodos);///////////////////////////////////////////
-                    MenuEliminar.getItems().addAll(childEliminarSeleccionado, childEliminarUno, childEliminarTodos);
+                    MenuEliminar.getItems().addAll(childEliminarSeleccionado, childEliminarTodos);
 
                     contextMenu.getItems().addAll(Buscar, Actualizar, separador1,
                             Mostrar, MenuNuevo, separador2, MenuEliminar);
 
                     Buscar.setOnAction(new EventHandler() {///// Funcion de la opcion de Busqueda
                         @Override
-                        public void handle(Event t) { 
+                        public void handle(Event t) {
                             ProgramaPrincipal.CreadorDeVentanas("VentanaBusqueda");
                         }
                     });
@@ -153,12 +152,12 @@ public class ControladorVentanaPrincipal implements Initializable {
                         }
                     });
 
-                    childNuevoCurso.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Curso
+                    childNuevoStore.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Store
                         @Override
                         public void handle(Event t) {
-                            ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoCurso");       ///// lectura de entry para nombre de nuevo documento
-                            TreeItem NuevoCurso = new TreeItem<String>("Nuevo Curso");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
-                            NodoPrincipal.getChildren().add(NuevoCurso);
+                            ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoStore");       ///// lectura de entry para nombre de nuevo documento
+                            TreeItem NuevoStore = new TreeItem<String>("Nuevo Store");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
+                            NodoPrincipal.getChildren().add(NuevoStore);
                             BCommit.setDisable(false);                               ////Activacion de Commit
                         }
                     });
@@ -167,8 +166,13 @@ public class ControladorVentanaPrincipal implements Initializable {
                         @Override
                         public void handle(Event t) {
                             ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoEstudiante");            ///// lectura de entry para nombre de nuevo documento
-                            TreeItem NuevoEstudiante = new TreeItem<String>("Nuevo Estudiante");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
-                            getTreeItem().getChildren().add(NuevoEstudiante);
+                            
+//                            TreeItem NuevoEstudiante = new TreeItem<String>("Nuevo Estudiante");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
+//                            hacer que lea ENTRY para saber titulo y archivo a agregar, ademas de la info
+//                            getTreeItem().getChildren().add(NuevoEstudiante);
+//                            Commit.EscrituraCommit("Json.Crear.Archivo()");
+//                            Commit.EscrituraParametro("TEST");
+                            
                             BCommit.setDisable(false);                               ////Activacion de Commit
                         }
                     });
@@ -176,63 +180,35 @@ public class ControladorVentanaPrincipal implements Initializable {
                     childEliminarSeleccionado.setOnAction(new EventHandler() {
                         @Override
                         public void handle(Event t) {                   ////falta agregar que borre carpeta de verdad
-                            TreeItem<String> selected = getTreeItem();
-                            if (selected == NodoPrincipal) {
+                            TreeItem<String> Seleccionado = getTreeItem();
+                            if (Seleccionado == NodoPrincipal) {
                                 JOptionPane.showMessageDialog(null, "El Sistema Base no puede ser eliminado", "Error", JOptionPane.WARNING_MESSAGE);
                             } else {
-                                
-                                
-                                System.out.println(getTreeItem());     // TreeItem [ value: CE-1103 ]  hacer que saque solo nombre para enviar a borrar de memoria
-                                
-                                
-                                getTreeItem().getParent().getChildren().remove(getTreeItem());
+                                Seleccionado.getParent().getChildren().remove(Seleccionado);
+                                Commit.EscrituraCommit("Json.Eliminar.Archivo()");
+//                                 Commit.EscrituraCommit("Json.Eliminar.Archivo()");
+                                Commit.EscrituraParametro(Seleccionado.getValue());
+//                                Commit.EscrituraParametro("TEST");
+//                                Commit.EscrituraParametro("TEST");
                                 BCommit.setDisable(false);                               ////Activacion de Commit
                             }
                         }
-                    });
-
-                    childEliminarUno.setOnAction(new EventHandler() {///// Funcion de la opcion de Eliminar Uno Solo por busqueda
-                        @Override
-                        public void handle(Event t) {        ////falta agregar que borre carpeta de verdad
-                            TreeItem<String> selected = getTreeItem().getParent();
-                            System.out.println(selected);
-                        }               ///// FALTA ELIMINAR POR BUSQUEDA
                     });
 
                     childEliminarTodos.setOnAction(new EventHandler() {///// Funcion de la opcion de Eliminar Todos los archivos de una carpeta
                         @Override
                         public void handle(Event t) {
                             TreeItem<String> Seleccionado = getTreeItem();
-                            
-                            
-                            
-                            
-                            Commit.EscrituraCommit("Json.Eliminar.VaciarCarpeta("+Seleccionado.getValue()+")");////////////////////////////////
-                            
-                            
-                            
-                            
-                            
-                            treeView.setShowRoot(false);
-                            ObservableList<TreeItem<String>> Hijo = getTreeItem().getChildren();
-                            ObservableList<TreeItem<String>> x = null;
-                            
-                            System.out.println(x);
-                            BCommit.setDisable(false);                               ////Activacion de Commit
-
-                            System.out.println((Hijo).getClass().getName());
-                            if (Hijo==x){
-                                System.out.println("no tengo hijos");
-                            JOptionPane.showMessageDialog(null, "Carpeta vacia", "Error", JOptionPane.WARNING_MESSAGE);
+                            if (Seleccionado == NodoPrincipal) {
+                                JOptionPane.showMessageDialog(null, "El Sistema Base no puede ser vaciado", "Error", JOptionPane.WARNING_MESSAGE);
                             } else {
-                               System.out.println("no entre al if"); 
+                                TreeItem NuevoBorrado = new TreeItem<String>(Seleccionado.getValue());
+                                NodoPrincipal.getChildren().add(NuevoBorrado);
+                                Seleccionado.getParent().getChildren().remove(Seleccionado);
+                                Commit.EscrituraCommit("Json.Eliminar.Todos()");
+                                Commit.EscrituraParametro(Seleccionado.getValue());
+                                BCommit.setDisable(false);                          ////Activacion de Commit
                             }
-                            
-//                            if (selected have childrens){
-//                            while selected.getChildren()!=null
-//                                    selected.getChildren().remove
-//                           }}else{
-//                                  }
                         }
                     });
                 }
@@ -255,6 +231,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                     }
                 }
             }
+
             @Override
             public TreeCell<String> call(TreeView<String> arg0) {
                 return new OpcionesClickDerecho();
