@@ -22,10 +22,9 @@ public class Main extends Application {
                 Scene scene = new Scene(rootPane);
                 stagePrincipal.setResizable(false);
                 stagePrincipal.setScene(scene);
-                stagePrincipal.setTitle("Sistema Estudiantil");
+                stagePrincipal.setTitle("LinkedDB");
                 ControladorVentanaPrincipal controller = loader.getController();
                 controller.setProgramaPrincipal(this);
-                stagePrincipal.setTitle("Busqueda");
                 stagePrincipal.show();
             } catch (IOException ex) {
                 System.out.println(ex.toString());
@@ -62,9 +61,9 @@ public class Main extends Application {
                             controller.setStagePrincipal(ventana);
                             break;
                         }
-                        case "VentanaNuevoEstudiante": {
-                            ventana.setTitle("Nuevo Estudiante");
-                            ControladorVentanaNuevoEstudiante controller = loader.getController();
+                        case "VentanaNuevoJson": {
+                            ventana.setTitle("Nuevo Json");
+                            ControladorVentanaNuevoJson controller = loader.getController();
                             controller.setStagePrincipal(ventana);
                             break;
                         }

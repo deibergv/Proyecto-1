@@ -65,24 +65,23 @@ public class Commit {
             while (c.hasNextLine()) {
                 String lineaCommit = c.nextLine();
                 String lineaParametros = p.nextLine();
-                if (null != lineaCommit) switch (lineaCommit) {
-                    case "Json.Crear.Carpeta()":
-                        Crear.Carpeta(lineaParametros);
-                        break;
+                if (null != lineaCommit) {
+                    switch (lineaCommit) {
 //                    case "Json.Crear.Archivo()":
 //                        Crear.Archivo(lineaParametros, METADATA);
 //                        break;
-//                        case "Json.Crear.Store()":
-//                        Crear.Archivo(lineaParametros);
-//                        break;
-                    case "Json.Eliminar.Archivo()":
-                        Json.Eliminar.Archivo(lineaParametros);
-                        break;
-                    case "Json.Eliminar.Todos()":
-                        Json.Eliminar.Todos(lineaParametros);
-                        break;
-                    default:
-                        break;
+                        case "Json.Crear.Store()":
+                            Crear.Store(lineaParametros);
+                            break;
+                        case "Json.Eliminar.Archivo()":
+                            Json.Eliminar.Archivo(lineaParametros);
+                            break;
+                        case "Json.Eliminar.Todos()":
+                            Json.Eliminar.Todos(lineaParametros);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             c.close();

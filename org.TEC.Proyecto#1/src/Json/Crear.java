@@ -21,12 +21,6 @@ public class Crear {
 
         File Carpeta = new File(RutaBase.RutaBase() + NombreDeCarpeta);
 
-    }
-
-    public static void Carpeta(String NombreDeCarpeta) {
-
-        File Carpeta = new File(RutaBase.RutaBase() + NombreDeCarpeta);
-
         if (Carpeta.exists() && Carpeta.isDirectory()) {
             JOptionPane.showMessageDialog(null, "Ya existe una carpeta con ese nombre", null, JOptionPane.WARNING_MESSAGE);        
         } else {

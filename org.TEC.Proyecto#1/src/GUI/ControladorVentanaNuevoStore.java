@@ -27,7 +27,6 @@ public class ControladorVentanaNuevoStore implements Initializable {
     private String Aceptar(ActionEvent event){
         String texto = (Texto.getText());
         stagePrincipal.close();
-        sout
         return texto;
     }
     

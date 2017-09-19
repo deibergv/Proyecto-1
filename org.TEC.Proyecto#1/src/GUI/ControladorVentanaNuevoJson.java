@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 
-public class ControladorVentanaNuevoEstudiante implements Initializable {
+public class ControladorVentanaNuevoJson implements Initializable {
 
     private Stage stagePrincipal;
 
