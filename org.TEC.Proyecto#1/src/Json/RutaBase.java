@@ -1,6 +1,7 @@
 package Json;
 
 import java.io.File;
+import java.nio.file.Paths;
 
 public class RutaBase { /// Clase encargada de obtener una ruta base en la creacion de archivos del programa    
 
@@ -13,6 +14,7 @@ public class RutaBase { /// Clase encargada de obtener una ruta base en la creac
     public static void CrearCarpetaBase() {
 
         File Carpeta = new File(RutaBase.RutaBase());
+        ////////////////////////////////////////////////////Paths.get(".").toAbsolutePath().normalize().toFile();
 
         if (Carpeta.exists() && Carpeta.isFile()) {
             return;

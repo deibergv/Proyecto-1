@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
 import javafx.stage.Stage;
+import static GUI.ControladorVentanaPrincipal.NodoPrincipal;
 
 public class ControladorVentanaNuevoStore implements Initializable {
 
@@ -24,10 +26,11 @@ public class ControladorVentanaNuevoStore implements Initializable {
     private Button Aceptar;
     
     @FXML
-    private String Aceptar(ActionEvent event){
+    private void Aceptar(ActionEvent event){
         String texto = (Texto.getText());
         stagePrincipal.close();
-        return texto;
+        TreeItem<String> NuevoStore = new TreeItem<String> (texto);
+         NodoPrincipal.getChildren().add(NuevoStore);
     }
     
     @FXML

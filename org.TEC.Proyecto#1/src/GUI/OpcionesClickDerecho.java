@@ -1,18 +1,18 @@
-package GUI;
-
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.cell.TextFieldTreeCell;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
-
+//package GUI;
+//
+//import javafx.event.Event;
+//import javafx.event.EventHandler;
+//import javafx.scene.control.ContextMenu;
+//import javafx.scene.control.Menu;
+//import javafx.scene.control.MenuItem;
+//import javafx.scene.control.SeparatorMenuItem;
+//import javafx.scene.control.TextField;
+//import javafx.scene.control.TreeItem;
+//import javafx.scene.control.cell.TextFieldTreeCell;
+//import javafx.scene.input.KeyCode;
+//import javafx.scene.input.KeyCombination;
+//import javafx.scene.input.KeyEvent;
+//
 //class OpcionesClickDerecho extends TextFieldTreeCell<String> {
 //
 //    private Main ProgramaPrincipal;
@@ -60,7 +60,7 @@ import javafx.scene.input.KeyEvent;
 //
 //            @Override
 //            public void handle(Event t) {
-//                ProgramaPrincipal.MostrarVentanaSecundaria();
+//                
 //            }
 //        });
 //

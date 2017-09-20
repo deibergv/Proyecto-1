@@ -30,6 +30,8 @@ import javax.swing.JOptionPane;
 public class ControladorVentanaPrincipal implements Initializable {
 
     private Main ProgramaPrincipal;
+    
+    public static TreeItem<String> NodoPrincipal;
 
     public void setProgramaPrincipal(Main ProgramaPrincipal) {
         this.ProgramaPrincipal = ProgramaPrincipal;
@@ -69,7 +71,8 @@ public class ControladorVentanaPrincipal implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ///////////////////////////////////arbol////////////////////////////////////////
-        TreeItem<String> NodoPrincipal = new TreeItem<>("LinkedDB", new ImageView(IconFolder));
+//        public static TreeItem<String> NodoPrincipal;
+        NodoPrincipal = new TreeItem<>("LinkedDB", new ImageView(IconFolder));
 
         TreeItem<String> nodeA = new TreeItem<>("CE-1103", new ImageView(IconFolder));
         TreeItem<String> nodeB = new TreeItem<>("Int. al bostezo", new ImageView(IconFolder));
@@ -151,17 +154,17 @@ public class ControladorVentanaPrincipal implements Initializable {
                         }
                     });
 
-//                    childNuevoStore.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Store
-//                        @Override
-//                        public void handle(Event t) {
-//                            ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoStore");       ///// lectura de entry para nombre de nuevo documento
+                    childNuevoStore.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Store
+                        @Override
+                        public void handle(Event t) {
+                            ProgramaPrincipal.CreadorDeVentanas("VentanaNuevoStore");       ///// lectura de entry para nombre de nuevo documento
 //                            TreeItem NuevoStore = new TreeItem<String>("Nuevo Store");        //hacer que se cree nuevo archivo Json (o carpeta con archivo)
 //                            NodoPrincipal.getChildren().add(NuevoStore);
 //                            Commit.EscrituraCommit("Json.Crear.Store()");
 //                            Commit.EscrituraParametro("TEST");//                  ademas ligarlo a lista
-//                            BCommit.setDisable(false);                               ////Activacion de Commit
-//                        }
-//                    });
+                            BCommit.setDisable(false);                               ////Activacion de Commit
+                        }
+                    });
 
                     childNuevoJson.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Objeto
                         @Override

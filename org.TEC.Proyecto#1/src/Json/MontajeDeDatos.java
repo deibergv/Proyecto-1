@@ -1,7 +1,6 @@
 package Json;
 
 import java.io.File;
-import java.util.Arrays;
 
 public class MontajeDeDatos {
 
