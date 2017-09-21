@@ -7,6 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 
+/**
+ * Constructor de la clase Actualizacion de Datos
+ *
+ * @author deiber
+ */
 public class ControladorVentanaActualizacion implements Initializable {
 
     private Stage stagePrincipal;
@@ -15,6 +20,11 @@ public class ControladorVentanaActualizacion implements Initializable {
         this.stagePrincipal = stagePrincipal;
     }
 
+    /**
+     * Asignacion de respectiva accion al boton para el cierre de la ventana
+     *
+     * @param event
+     */
     @FXML
     private void salirVentana(ActionEvent event) {
         stagePrincipal.close();

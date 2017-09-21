@@ -27,7 +27,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField prefHeight="25.0" prefWidth="242.0">
+                  <TextField fx:id="Texto" prefHeight="25.0" prefWidth="242.0">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
@@ -95,16 +95,17 @@
                </padding>
             </HBox>
             <Separator prefHeight="7.0" prefWidth="414.0" />
-            <Label prefHeight="23.0" prefWidth="366.0" text="Requerido / no requerido (si es no requerido, un valor por defecto">
-               <padding>
-                  <Insets left="15.0" />
-               </padding>
-            </Label>
+            <HBox prefHeight="24.0" prefWidth="414.0" spacing="15.0">
+               <children>
+                  <Label prefHeight="15.0" prefWidth="206.0" text="(Requerido) Color favorito:" />
+                  <TextField prefHeight="25.0" prefWidth="142.0" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <Button fx:id="button1" layoutX="128.0" layoutY="321.0" onAction="#salirVentana" text="Aceptar" />
+      <Button fx:id="Aceptar" layoutX="128.0" layoutY="321.0" onAction="#Aceptar" text="Aceptar" />
     </children>
 </AnchorPane>

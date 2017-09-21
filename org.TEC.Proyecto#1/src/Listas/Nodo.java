@@ -1,5 +1,11 @@
 package Listas;
 
+/**
+ * Creacion del Nodo para su respectivo uso y caracteristicas del mismo
+ *
+ * @author deiber
+ * @param <T>
+ */
 public class Nodo<T extends Comparable<T>> {
 
     private Nodo<T> siguiente;

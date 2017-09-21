@@ -1,5 +1,9 @@
 package Listas;
-
+/**
+ * Constructor de la clase encargada de generar una Lista Simple
+ * @author deiber
+ * @param <T> 
+ */
 public class ListaSimple<T extends Comparable<T>> {
 
     private Nodo<T> primero;

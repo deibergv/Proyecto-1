@@ -15,6 +15,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+/**
+ * Constructor de la clase encargada de invocar una ventana Busqueda
+ *
+ * @author deiber
+ */
 public class ControladorVentanaBusqueda implements Initializable {
 
     private Stage stagePrincipal;
@@ -35,31 +40,30 @@ public class ControladorVentanaBusqueda implements Initializable {
     private TextField filterField;
 
 //    public ObservableList<Tabla> list = FXCollections.observableArrayList(
-            //String[] array = Json.Metadata.StoreToString(Json.Metadata.StringToStore("a-b-c-d-f-g")).split("-",0));
+    //String[] array = Json.Metadata.StoreToString(Json.Metadata.StringToStore("a-b-c-d-f-g")).split("-",0));
 //            new Tabla(MontajeDeDatos.MontajeDeDatos("Nombre"), MontajeDeDatos.MontajeDeDatos("Nombre"), MontajeDeDatos.MontajeDeDatos("Atributo")),
 //            new Tabla("123", "Pedro", "Cuenta vacas"),
 //            new Tabla("456", "Leiner", "Biotecnologia"),
 //            new Tabla("678", "Felipe", "Computacion")
 //    );
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ///////////////////////////////////tabla////////////////////////////////////////
         carne.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carne"));
         nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));
         carrera.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carrera"));
-        
+
         ObservableList<Tabla> list = FXCollections.observableArrayList();
 //        while (Json.MontajeDeDatos.MontajeDeDatos("Nombre") != null){
 //             System.out.println("HOla");
 //            Tabla tabla = new Tabla(MontajeDeDatos.MontajeDeDatos("Nombre"), MontajeDeDatos.MontajeDeDatos("Nombre"), MontajeDeDatos.MontajeDeDatos("Atributo"));
-            String A = MontajeDeDatos.MontajeDeDatos("Nombre");
-            Tabla tabla1 = new Tabla(MontajeDeDatos.MontajeDeDatos("Nombre"), "Nombre", "Atributo");
+        String A = MontajeDeDatos.MontajeDeDatos("Nombre");
+        Tabla tabla1 = new Tabla(MontajeDeDatos.MontajeDeDatos("Nombre"), "Nombre", "Atributo");
 
-            list.add(tabla1);
+        list.add(tabla1);
 //        }
         table.setItems(list);
-        
+
         FilteredList<Tabla> DatosFiltrados = new FilteredList<>(list, p -> true); /////////////// Filtrado de tabla para solo mostrar lo buscado
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
             DatosFiltrados.setPredicate(estudiante -> {

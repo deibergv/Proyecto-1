@@ -2,6 +2,11 @@ package Json;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Contrucctor de la clase Metadata
+ *
+ * @author deiber
+ */
 public class Metadata {
 
     private String StoreName;
@@ -11,6 +16,16 @@ public class Metadata {
     private String Requerido;
     private String Defecto;
 
+    /**
+     * Inicializacion de parametros base
+     *
+     * @param store
+     * @param atributo
+     * @param valor
+     * @param nombre
+     * @param requerido
+     * @param defecto
+     */
     public Metadata(String store, String atributo, String valor, String nombre, String requerido, String defecto) {
         this.StoreName = store;
         this.Atributo = atributo;
@@ -68,13 +83,17 @@ public class Metadata {
         this.Defecto = Defecto;
     }
 
-    public String Validacion() {
+    /**
+     * Validacion respectiva de datos entrantes
+     *
+     * @return
+     */
+    public String ValidacionDeDatos() {
         try {
             switch (getAtributo()) {
                 case "int":
                     Integer.parseInt(getValor());
                     break;
-
                 case "float":
                     Float.parseFloat(getValor());
                     break;
@@ -108,5 +127,5 @@ public class Metadata {
         return StoreToString;
     }
 //string a = "StoreName-atributo-valor-nombre-requerido-defecto";
-    
+
 }

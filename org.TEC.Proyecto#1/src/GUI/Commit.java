@@ -8,8 +8,19 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+/**
+ * Constructor de la clase commit
+ *
+ * @author deiber
+ */
 public class Commit {
 
+    /**
+     * Creacion de archivo .txt encargado de guardar informacion para su previo
+     * uso
+     *
+     * @param Peticion
+     */
     public static void EscrituraCommit(String Peticion) {
         FileWriter Funcion = null;
         PrintWriter escritura = null;
@@ -32,6 +43,12 @@ public class Commit {
         }
     }
 
+    /**
+     * Constructor de la clase commit encargado de crear parametros para su
+     * posterior invocacion
+     *
+     * @param Parametro
+     */
     public static void EscrituraParametro(String Parametro) {
         FileWriter Funcion = null;
         PrintWriter escritura = null;
@@ -54,6 +71,10 @@ public class Commit {
         }
     }
 
+    /**
+     * Constructor de la clase commit encargado de la espectiva lectura de datos
+     * del .txt
+     */
     public static void LecturaCommit() {
         File commit = new File(RutaBase.RutaBase() + "Commit.txt");
         File parametros = new File(RutaBase.RutaBase() + "Parametros.txt");
@@ -90,6 +111,10 @@ public class Commit {
         }
     }
 
+    /**
+     * Se encarga de la respectiva eliminacion del archivo .txt para evitar
+     * conflictos posteriores
+     */
     public static void BorrarCommit() {
         File c = new File(RutaBase.RutaBase() + "Commit.txt");
         c.delete();

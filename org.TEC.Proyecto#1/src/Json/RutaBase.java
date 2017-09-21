@@ -3,6 +3,12 @@ package Json;
 import java.io.File;
 import java.nio.file.Paths;
 
+/**
+ * Construcctor de la clase encargada de dar una ruta base a la creacion de
+ * archivos
+ *
+ * @author deiber
+ */
 public class RutaBase { /// Clase encargada de obtener una ruta base en la creacion de archivos del programa    
 
     public static String RutaBase() {

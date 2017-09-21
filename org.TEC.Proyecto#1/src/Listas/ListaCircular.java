@@ -1,5 +1,11 @@
 package Listas;
 
+/**
+ * Contructor de la clase encargada de las bases para una Lista Circular
+ *
+ * @author deiber
+ * @param <T>
+ */
 public class ListaCircular<T extends Comparable<T>> {
 
     private Nodo<T> primero;
@@ -22,6 +28,11 @@ public class ListaCircular<T extends Comparable<T>> {
         this.primero.setSiguiente(primero);
     }
 
+    /**
+     * Insercion basede nodo
+     *
+     * @param valor
+     */
     public void Insertar(T valor) {
         if (this.primero == null) {
             this.primero = new Nodo<T>(valor);
@@ -37,6 +48,9 @@ public class ListaCircular<T extends Comparable<T>> {
         actual.setSiguiente(actual2);
     }
 
+    /**
+     * Impresion de lista
+     */
     public void Imprimir() {
         Nodo<T> actual = this.primero;
         Boolean headFlag = false;
@@ -49,6 +63,12 @@ public class ListaCircular<T extends Comparable<T>> {
         }
     }
 
+    /**
+     * Busqueda de un nodo
+     *
+     * @param buscado
+     * @return
+     */
     public Nodo<T> Buscar(T buscado) {
         Nodo<T> actual = this.primero;
         Boolean headFlag = false;
@@ -65,6 +85,11 @@ public class ListaCircular<T extends Comparable<T>> {
         return null;
     }
 
+    /**
+     * Borrado de algun valor segun su respectiva busqueda
+     *
+     * @param valor
+     */
     public void Borrar(T valor) {
         Nodo<T> actual = this.primero;
         Nodo<T> anterior = null;

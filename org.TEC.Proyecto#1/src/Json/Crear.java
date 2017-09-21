@@ -6,29 +6,48 @@ import java.io.File;
 import java.io.FileWriter;
 import javax.swing.JOptionPane;
 
+/**
+ * Constructor de la clase encargada de la creacion de archivos
+ *
+ * @author deiber
+ */
 public class Crear {
 
+    /**
+     * Creacion de carpeta base para el guardado de datos
+     */
     public static void CarpetaBase() {
 
         File Carpeta = new File(RutaBase.RutaBase());
-        
-                if (!Carpeta.exists()) {
-                    Carpeta.mkdir();
-                }
+
+        if (!Carpeta.exists()) {
+            Carpeta.mkdir();
         }
-    
+    }
+
+    /**
+     * Creacion respectiva de solicitud de creacion
+     *
+     * @param NombreDeCarpeta
+     */
     public static void Store(String NombreDeCarpeta) {
 
         File Carpeta = new File(RutaBase.RutaBase() + NombreDeCarpeta);
 
         if (Carpeta.exists() && Carpeta.isDirectory()) {
-            JOptionPane.showMessageDialog(null, "Ya existe una carpeta con ese nombre", null, JOptionPane.WARNING_MESSAGE);        
+            JOptionPane.showMessageDialog(null, "Ya existe una carpeta con ese nombre", null, JOptionPane.WARNING_MESSAGE);
         } else {
-                    Carpeta.mkdir();
-                    JOptionPane.showMessageDialog(null, "Carpeta creada de forma exitosa", null, JOptionPane.INFORMATION_MESSAGE);  /////////////////////
-                }
+            Carpeta.mkdir();
+            JOptionPane.showMessageDialog(null, "Carpeta creada de forma exitosa", null, JOptionPane.INFORMATION_MESSAGE);  /////////////////////
+        }
     }
 
+    /**
+     * Creacion respectiva de solicitud de creacion previa
+     *
+     * @param NombreDelJson
+     * @param Nuevo
+     */
     public static void Archivo(String NombreDelJson, Metadata Nuevo) {           // FALTA dirigir a carpeta a donde va a ir
 
         try {
@@ -36,7 +55,7 @@ public class Crear {
             Gson gson = new Gson();
             String jsonString = gson.toJson(Nuevo);                             // VARIABLE CON INFORMACION
 
-            String ruta = RutaBase.RutaBase() + NombreDelJson + ".txt";        
+            String ruta = RutaBase.RutaBase() + NombreDelJson + ".txt";
             File archivo = new File(ruta);
 
             BufferedWriter bw;

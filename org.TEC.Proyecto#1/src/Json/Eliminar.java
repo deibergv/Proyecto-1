@@ -3,8 +3,18 @@ package Json;
 import java.io.File;
 import javax.swing.JOptionPane;
 
+/**
+ * Constructor de clase encargada de la eliminacion de archivos
+ *
+ * @author deiber
+ */
 public class Eliminar {
 
+    /**
+     * se encarga de la eliminacion de un archivo por su respectivo nombre
+     *
+     * @param NombreDeArchivo
+     */
     public static void Archivo(String NombreDeArchivo) {
 
         File Archivo = new File(RutaBase.RutaBase() + NombreDeArchivo);
@@ -33,6 +43,11 @@ public class Eliminar {
 //        }
 //    }
 
+    /**
+     * Se encarga del llamado a borrar de carpetas con contenido
+     *
+     * @param NombreDeCarpeta
+     */
     public static void Todos(String NombreDeCarpeta) {
 
         File Carpeta = new File(RutaBase.RutaBase() + NombreDeCarpeta);
@@ -45,6 +60,11 @@ public class Eliminar {
         JOptionPane.showMessageDialog(null, "Archivos eliminados de forma exitosa", null, JOptionPane.INFORMATION_MESSAGE);////////////////////////
     }
 
+    /**
+     * Se encarga del vaciado de una carpeta para su respectiva eliminacion
+     *
+     * @param Carpeta
+     */
     public static void VaciarCarpeta(File Carpeta) {
         File[] ListaDeContenido = Carpeta.listFiles();
         for (File Contenido : ListaDeContenido) {

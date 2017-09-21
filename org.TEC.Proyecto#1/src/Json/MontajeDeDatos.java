@@ -2,6 +2,11 @@ package Json;
 
 import java.io.File;
 
+/**
+ * Clase encargada del llamado y montaje de datos segun su respectivo llamado
+ *
+ * @author deiber
+ */
 public class MontajeDeDatos {
 
     public static String MontajeDeDatos(String Dato) {
@@ -9,9 +14,9 @@ public class MontajeDeDatos {
         File[] ListaDeContenido = Carpeta.listFiles();
         String ListaDeDatos = "";
         ListaDeDatos += ArchivosDeCarpeta(ListaDeContenido, Dato);
-         System.out.println(ListaDeDatos);
+        System.out.println(ListaDeDatos);
         return ArchivosDeCarpeta(ListaDeContenido, Dato);
-       
+
     }
 
     public static String ArchivosDeCarpeta(File[] Carpeta, String Dato) {

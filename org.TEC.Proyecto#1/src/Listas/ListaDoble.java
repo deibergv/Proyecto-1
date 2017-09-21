@@ -1,5 +1,12 @@
 package Listas;
 
+/**
+ * Constructor de la clase encargada de la generacion de las bases para una
+ * Lista Doble
+ *
+ * @author deiber
+ * @param <T>
+ */
 public class ListaDoble<T extends Comparable<T>> {
 
     private Nodo<T> primero;
@@ -32,7 +39,7 @@ public class ListaDoble<T extends Comparable<T>> {
         Nodo<T> actual2 = new Nodo<>(valor);
         actual.setSiguiente(actual2);
         actual2.setAnterior(actual);
-        
+
     }
 
     public void Imprimir() {
