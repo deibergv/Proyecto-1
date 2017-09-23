@@ -85,7 +85,7 @@ public class OpcionesClickDerecho {
 
             if (empty) {
                 setGraphic(null);
-            } else if (!empty && getTreeItem().getParent() == null) {
+            } else if (!empty && getTreeItem().getParent() == null) {           // opciones de Nodo Principal
                 Buscar.setOnAction(new EventHandler() {
                     @Override
                     public void handle(Event t) {
