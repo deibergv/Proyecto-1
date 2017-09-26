@@ -63,7 +63,7 @@ public class ControladorVentanaPrincipal implements Initializable {
         BCommit.setDisable(true);                                                //// Desactiva el boton ///
     }
     @FXML
-    private TableColumn<Tabla, Integer> carne;
+    private TableColumn<Tabla, String> carne;
     @FXML
     private TableColumn<Tabla, String> nombre;
     @FXML
@@ -98,7 +98,7 @@ public class ControladorVentanaPrincipal implements Initializable {
         treeView.setRoot(NodoPrincipal);
 
 /////////////////////////////////////tabla////////////////////////////////////////
-        carne.setCellValueFactory(new PropertyValueFactory<Tabla, Integer>("carne"));
+        carne.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carne"));
         nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));
         carrera.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carrera"));
 
@@ -235,17 +235,17 @@ public class ControladorVentanaPrincipal implements Initializable {
                         childNuevoJson.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Objeto
                             @Override
                             public void handle(Event t) {
-                                TreeItem<String> NuevoStore = new TreeItem<String>("NuevoJson");
-                                NodoPrincipal.getChildren().add(NuevoStore);
+//                                TreeItem<String> NuevoStore = new TreeItem<String>("NuevoJson");
+//                                NodoPrincipal.getChildren().add(NuevoStore);
                                 CreadorDeVentanas("VentanaNuevoJson");                                                        //**********************
-                                //BCommit.setDisable(false);                               ////Activacion de Commit
+                                BCommit.setDisable(false);                               ////Activacion de Commit
                             }
                         });
                         childEliminarStoreSeleccionado.setOnAction(new EventHandler() {
                             @Override
                             public void handle(Event t) {
                                 getTreeItem().getParent().getChildren().remove(getTreeItem());
-                                Commit.EscrituraCommit("Json.Eliminar.Archivo()");
+                                Commit.EscrituraCommit("Json.Eliminar.Carpeta()");
                                 Commit.EscrituraParametro(getTreeItem().getValue());
                                 BCommit.setDisable(false);                               ////Activacion de Commit
                             }
@@ -254,13 +254,13 @@ public class ControladorVentanaPrincipal implements Initializable {
                             @Override
                             public void handle(Event t) {
                                 TreeItem<String> Seleccionado = getTreeItem();
-                                    TreeItem NuevoBorrado = new TreeItem<String>(Seleccionado.getValue());              //****** ver si se puede mejorar**
-                                    NodoPrincipal.getChildren().add(NuevoBorrado);
-                                    Seleccionado.getParent().getChildren().remove(Seleccionado);
-                                    Commit.EscrituraCommit("Json.Eliminar.Todos()");
-                                    Commit.EscrituraParametro(Seleccionado.getValue());
-                                    BCommit.setDisable(false);                          ////Activacion de Commit
-                                
+                                TreeItem NuevoBorrado = new TreeItem<String>(Seleccionado.getValue());              //****** ver si se puede mejorar**
+                                NodoPrincipal.getChildren().add(NuevoBorrado);
+                                Seleccionado.getParent().getChildren().remove(Seleccionado);
+                                Commit.EscrituraCommit("Json.Eliminar.Todos()");
+                                Commit.EscrituraParametro(Seleccionado.getValue());
+                                BCommit.setDisable(false);                          ////Activacion de Commit
+
                             }
                         });
                         setContextMenu(contextMenuNodo);
