@@ -17,7 +17,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-import GUI.OpcionesClickDerecho.Opciones;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.cell.TextFieldTreeCell;
+import static GUI.CreadorDeVentanas.CreadorDeVentanas;
 
 /**
  * Constructor de la clase de la Ventana Main o principal
@@ -28,7 +35,8 @@ public class ControladorVentanaPrincipal implements Initializable {
 
     private Main ProgramaPrincipal;
 
-    public TreeItem<String> NodoPrincipal;
+    public static TreeItem<String> NodoPrincipal;
+
     @FXML
     private Button BCommit;
     @FXML
@@ -62,15 +70,15 @@ public class ControladorVentanaPrincipal implements Initializable {
     private TableColumn<Tabla, String> carrera;
 
     public static ObservableList<Tabla> list = FXCollections.observableArrayList(
-            //while montaje de datos a la tabla
             new Tabla("2017159397", "Deiber", "CE")
     );
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ///////////////////////////////////arbol////////////////////////////////////////
         NodoPrincipal = new TreeItem<>("LinkedDB", new ImageView(IconFolder));
-                                                                                    table.setItems(list);//// lo permite con lista statica pero no con tabla estatica
+        NodoPrincipal.setExpanded(true);
+
         TreeItem<String> nodeA = new TreeItem<>("CE-1103", new ImageView(IconFolder));
         TreeItem<String> nodeB = new TreeItem<>("Int. al bostezo", new ImageView(IconFolder));
         TreeItem<String> nodeC = new TreeItem<>("node C", new ImageView(IconFolder));
@@ -87,7 +95,6 @@ public class ControladorVentanaPrincipal implements Initializable {
         nodeB.getChildren().add(nodeB1);
         nodeC.getChildren().add(nodeC1);
 
-        NodoPrincipal.setExpanded(true);
         treeView.setRoot(NodoPrincipal);
 
 /////////////////////////////////////tabla////////////////////////////////////////
@@ -98,6 +105,190 @@ public class ControladorVentanaPrincipal implements Initializable {
 //////////////////////////////////MenuDeArbol///////////////////////////////////
         treeView.setCellFactory(new Callback<TreeView<String>, TreeCell<String>>() {
             /**
+             * Menu de Opciones del arbol
+             *
+             * @author deiber
+             */
+            class OpcionesClickDerecho extends TextFieldTreeCell<String> {
+
+                private final ContextMenu contextMenuPrincipal = new ContextMenu();
+                private final ContextMenu contextMenuNodo = new ContextMenu();
+                private final ContextMenu contextMenuHijos = new ContextMenu();
+
+                MenuItem Buscar1;
+                MenuItem Buscar2;
+                MenuItem Actualizar;
+                MenuItem MostrarTodos;
+                MenuItem MostrarStore;
+                SeparatorMenuItem separador1;
+                SeparatorMenuItem separador2;
+                SeparatorMenuItem separador3;
+                Menu MenuNuevoPrincipal;
+                Menu MenuNuevoNodo;
+                MenuItem childNuevoStore;
+                MenuItem childNuevoJson;
+                Menu MenuEliminar;
+                Menu MenuEliminarHijos;
+                MenuItem childEliminarStoreSeleccionado;
+                MenuItem childEliminarJsonSeleccionado;
+                MenuItem childEliminarTodos;
+
+                /**
+                 * Metodo encargado de dar un menu de opciones al arbol
+                 */
+                public OpcionesClickDerecho() {
+
+                    Buscar1 = new MenuItem("Buscar");
+                    Buscar2 = new MenuItem("Buscar");
+                    Actualizar = new MenuItem("Actualizar Jsons");
+                    MostrarTodos = new MenuItem("Mostrar todos los Jsons");
+                    MostrarStore = new MenuItem("Mostrar Jsons");
+                    separador1 = new SeparatorMenuItem();
+                    separador2 = new SeparatorMenuItem();
+                    separador3 = new SeparatorMenuItem();
+                    MenuNuevoPrincipal = new Menu("Nuevo");
+                    MenuNuevoNodo = new Menu("Nuevo");
+                    childNuevoStore = new MenuItem("Nuevo Store");
+                    childNuevoJson = new MenuItem("Nuevo Json");
+                    MenuEliminar = new Menu("Eliminar");
+                    MenuEliminarHijos = new Menu("Eliminar");
+                    childEliminarStoreSeleccionado = new MenuItem("Eliminar Store seleccionado");
+                    childEliminarJsonSeleccionado = new MenuItem("Eliminar Json seleccionado");
+                    childEliminarTodos = new MenuItem("Eliminar todos los Archivos");
+
+                    MenuNuevoPrincipal.getItems().addAll(childNuevoStore);
+                    MenuNuevoNodo.getItems().addAll(childNuevoJson);
+
+                    MenuEliminar.getItems().addAll(childEliminarStoreSeleccionado, childEliminarTodos);
+                    MenuEliminarHijos.getItems().addAll(childEliminarJsonSeleccionado);
+
+                    //Buscar.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));                                           ***********************
+                    //Actualizar.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
+                    //Mostrar.setAccelerator(KeyCombination.keyCombination("Ctrl+M"));
+                    //Nuevo.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
+                    //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
+                    //childEliminarTodos.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+N"));
+                    //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Delete"));
+                    //childEliminarTodos.setAccelerator(KeyCombination.keyCombination("Shift+Delete")); 
+                    contextMenuPrincipal.getItems().addAll(Buscar1, MostrarTodos, separador1, MenuNuevoPrincipal);
+                    contextMenuNodo.getItems().addAll(Buscar2, Actualizar, MostrarStore, separador2, MenuNuevoNodo, MenuEliminar);
+                    contextMenuHijos.getItems().addAll(separador3, MenuEliminarHijos);      //montar "actualizar" especial
+                }
+
+/////////////////////// Menu de opciones en cada nodo //////////////////////////
+                /**
+                 * Metodo encargado de dar un menu de opciones al arbol en cada
+                 * nodo
+                 *
+                 * @param item
+                 * @param empty
+                 */
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (empty) {
+                        setGraphic(null);
+
+                    } else if (!empty && getTreeItem().getParent() == null) {           // opciones de Nodo Principal //
+                        Buscar1.setOnAction(new EventHandler() {
+                            @Override
+                            public void handle(Event t) {
+                                CreadorDeVentanas("VentanaBusqueda");
+                            }
+                        });
+                        MostrarTodos.setOnAction(new EventHandler() {///// Funcion de la opcion de Mostrar
+                            @Override
+                            public void handle(Event t) {
+                                table.setItems(list);
+                            }
+                        });
+                        childNuevoStore.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Store
+                            @Override
+                            public void handle(Event t) {
+                                CreadorDeVentanas("VentanaNuevoStore");
+                                BCommit.setDisable(false);                      ////Activacion de Commit
+                            }
+                        });
+                        setContextMenu(contextMenuPrincipal);
+
+                    } else if (getTreeItem().getParent() == NodoPrincipal) {          // Opciones de Nodos //
+                        Buscar2.setOnAction(new EventHandler() {
+                            @Override
+                            public void handle(Event t) {
+                                CreadorDeVentanas("VentanaBusqueda");
+                            }
+                        });
+                        Actualizar.setOnAction(new EventHandler() {///// Funcion de la opcion de Actualizacion
+                            @Override
+                            public void handle(Event t) {
+                                CreadorDeVentanas("VentanaActualizacion");                                              //********************
+                                BCommit.setDisable(false);                      ////Activacion de Commit
+                            }
+                        });
+                        MostrarStore.setOnAction(new EventHandler() {///// Funcion de la opcion de Mostrar
+                            @Override
+                            public void handle(Event t) {
+                                table.setItems(list);                                                                               // ********************
+                            }
+                        });
+                        childNuevoJson.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Objeto
+                            @Override
+                            public void handle(Event t) {
+                                TreeItem<String> NuevoStore = new TreeItem<String>("NuevoJson");
+                                NodoPrincipal.getChildren().add(NuevoStore);
+                                CreadorDeVentanas("VentanaNuevoJson");                                                        //**********************
+                                //BCommit.setDisable(false);                               ////Activacion de Commit
+                            }
+                        });
+                        childEliminarStoreSeleccionado.setOnAction(new EventHandler() {
+                            @Override
+                            public void handle(Event t) {
+                                getTreeItem().getParent().getChildren().remove(getTreeItem());
+                                Commit.EscrituraCommit("Json.Eliminar.Archivo()");
+                                Commit.EscrituraParametro(getTreeItem().getValue());
+                                BCommit.setDisable(false);                               ////Activacion de Commit
+                            }
+                        });
+                        childEliminarTodos.setOnAction(new EventHandler() {///// Funcion de la opcion de Eliminar Todos los archivos de una carpeta
+                            @Override
+                            public void handle(Event t) {
+                                TreeItem<String> Seleccionado = getTreeItem();
+                                    TreeItem NuevoBorrado = new TreeItem<String>(Seleccionado.getValue());              //****** ver si se puede mejorar**
+                                    NodoPrincipal.getChildren().add(NuevoBorrado);
+                                    Seleccionado.getParent().getChildren().remove(Seleccionado);
+                                    Commit.EscrituraCommit("Json.Eliminar.Todos()");
+                                    Commit.EscrituraParametro(Seleccionado.getValue());
+                                    BCommit.setDisable(false);                          ////Activacion de Commit
+                                
+                            }
+                        });
+                        setContextMenu(contextMenuNodo);
+                    } else if (getTreeItem().isLeaf() && getTreeItem().getParent().getParent() != null) {       // Opciones de hijos hijos //
+//                        Actualizar.setOnAction(new EventHandler() {///// Funcion de la opcion de Actualizacion
+//                            @Override
+//                            public void handle(Event t) {
+//                                CreadorDeVentanas("VentanaActualizacion");                                              //********************
+//                                BCommit.setDisable(false);                      ////Activacion de Commit
+//                            }
+//                        });
+                        childEliminarJsonSeleccionado.setOnAction(new EventHandler() {
+                            @Override
+                            public void handle(Event t) {
+                                getTreeItem().getParent().getChildren().remove(getTreeItem());
+                                Commit.EscrituraCommit("Json.Eliminar.Archivo()");                        // CAMBIAR EL ELIMINAR por JSON **************
+                                Commit.EscrituraParametro(getTreeItem().getValue());
+                                BCommit.setDisable(false);                               ////Activacion de Commit
+                            }
+                        });
+                        setContextMenu(contextMenuHijos);
+                    } else {
+                        return;
+                    }
+                }
+            }
+
+            /**
              * Llamado a la activacion de las opciones
              *
              * @param arg0
@@ -105,7 +296,7 @@ public class ControladorVentanaPrincipal implements Initializable {
              */
             @Override
             public TreeCell<String> call(TreeView<String> arg0) {
-                return new Opciones(NodoPrincipal);
+                return new OpcionesClickDerecho();
             }
         });
     }

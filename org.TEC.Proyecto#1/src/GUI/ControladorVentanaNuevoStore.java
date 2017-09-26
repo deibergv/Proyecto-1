@@ -1,6 +1,6 @@
 package GUI;
 
-import static GUI.OpcionesClickDerecho.Opciones.NodoPrincipal;
+import static GUI.ControladorVentanaPrincipal.NodoPrincipal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -42,6 +42,8 @@ public class ControladorVentanaNuevoStore implements Initializable {
         stagePrincipal.close();
         TreeItem<String> NuevoStore = new TreeItem<String>(texto);
         NodoPrincipal.getChildren().add(NuevoStore);
+        Commit.EscrituraCommit("Json.Crear.Store()");
+        Commit.EscrituraParametro("TEST");
     }
 
     @FXML
@@ -51,6 +53,5 @@ public class ControladorVentanaNuevoStore implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 }

@@ -94,6 +94,9 @@ public class Commit {
                         case "Json.Crear.Store()":
                             Crear.Store(lineaParametros);
                             break;
+                        case "Json.Eliminar.Carpeta()":
+                            Json.Eliminar.Carpeta(lineaParametros);
+                            break;
                         case "Json.Eliminar.Archivo()":
                             Json.Eliminar.Archivo(lineaParametros);
                             break;

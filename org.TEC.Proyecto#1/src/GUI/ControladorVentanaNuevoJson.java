@@ -24,10 +24,11 @@ public class ControladorVentanaNuevoJson implements Initializable {
     }
 
     public TreeItem<String> Seleccionado;
-    public static void Seleccionado (TreeItem<String> NodoSelecionado){
+
+    public static void Seleccionado(TreeItem<String> NodoSelecionado) {
         TreeItem<String> Seleccionado = NodoSelecionado;
     }
-    
+
     @FXML
     private TextField Texto;
 
@@ -41,11 +42,13 @@ public class ControladorVentanaNuevoJson implements Initializable {
      */
     @FXML
     private void Aceptar(ActionEvent event) {
-         stagePrincipal.close();
+        stagePrincipal.close();
 //        String texto = (Texto.getText());
 //        stagePrincipal.close();
 //        TreeItem<String> NuevoJson = new TreeItem<String>(texto);
 //        Seleccionado.getParent().getChildren().add(NuevoJson);
+        Commit.EscrituraCommit("Json.Crear.Archivo()");
+        Commit.EscrituraParametro("TEST");
     }
 
     @FXML
