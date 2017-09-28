@@ -41,7 +41,10 @@ public class ControladorVentanaNuevoStore implements Initializable {
         String texto = (Texto.getText());
         stagePrincipal.close();
         TreeItem<String> NuevoStore = new TreeItem<String>(texto);
+        TreeItem<String> NuevoJson = new TreeItem<String>(texto);
+//        NuevoStore.getChildren().add(NuevoJson);
         NodoPrincipal.getChildren().add(NuevoStore);
+        NuevoStore.getChildren().add(NuevoJson);
         Commit.EscrituraCommit("Json.Crear.Store()");
         Commit.EscrituraParametro("TEST");
     }

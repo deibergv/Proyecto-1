@@ -15,6 +15,12 @@ public class MontajeDeDatos {
         String ListaDeDatos = "";
         ListaDeDatos += ArchivosDeCarpeta(ListaDeContenido, Dato);
         System.out.println(ListaDeDatos);
+        
+        
+//        ListaSimple<String> Test = new ListaSimple<>();
+//        for(){}    
+//        Test.Insertar("primeroHOla");        
+        
         return ArchivosDeCarpeta(ListaDeContenido, Dato);
 
     }

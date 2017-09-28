@@ -63,7 +63,7 @@ public class ControladorVentanaPrincipal implements Initializable {
         BCommit.setDisable(true);                                                //// Desactiva el boton ///
     }
     @FXML
-    private TableColumn<Tabla, String> carne;
+    private TableColumn<Tabla, Integer> carne;
     @FXML
     private TableColumn<Tabla, String> nombre;
     @FXML
@@ -98,7 +98,7 @@ public class ControladorVentanaPrincipal implements Initializable {
         treeView.setRoot(NodoPrincipal);
 
 /////////////////////////////////////tabla////////////////////////////////////////
-        carne.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carne"));
+        carne.setCellValueFactory(new PropertyValueFactory<Tabla, Integer>("carne"));
         nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));
         carrera.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carrera"));
 
