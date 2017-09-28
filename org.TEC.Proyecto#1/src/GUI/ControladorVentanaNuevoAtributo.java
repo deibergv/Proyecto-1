@@ -10,18 +10,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TreeItem;
 import javafx.stage.Stage;
 
 /**
- * Constructor de la clase Nuevo Atributo que se encarga de la creacion de los atributos
+ * Constructor de la clase Nuevo Atributo que se encarga de la creacion de los
+ * atributos
  *
  * @author deiber
  */
 public class ControladorVentanaNuevoAtributo implements Initializable {
 
     private Stage stagePrincipal;
-    
+
     public void setStagePrincipal(Stage stagePrincipal) {
         this.stagePrincipal = stagePrincipal;
     }
@@ -31,7 +33,8 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
     @FXML
     private TextField Atributo;
 
-    @FXML                                 
+    final ToggleGroup TipoDeAtributo = new ToggleGroup();
+    @FXML
     private RadioButton Entero;
     @FXML
     private RadioButton Flotante;
@@ -40,6 +43,7 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
     @FXML
     private RadioButton FechaHora;
 
+    final ToggleGroup TipoEspecial = new ToggleGroup();
     @FXML
     private RadioButton Foranea;
     @FXML
@@ -59,11 +63,18 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
     private void Aceptar(ActionEvent event) {
         String json = (Json.getText());
         TreeItem<String> NuevoJson = new TreeItem<String>(json);
-        seleccionado.getChildren().add(NuevoJson);
-        Commit.EscrituraCommit("Json.Crear.Archivo()");
+//        seleccionado.getChildren().add(NuevoJson);
+        Commit.EscrituraCommit("Json.Crear.Archivo()");     //// creacion de atributo
         Commit.EscrituraParametro(json);                        ///// arreglar entrada de info
         ListaDeJsons.Insertar(json);
-        stagePrincipal.close();
+        
+        
+//        stagePrincipal.close();           /// sin el close para que se agreguen todos los atributos que se desee
+        
+        //// hacer que cree una columna en la tabla                         hacer que hojas permitar agregar objetos segun atributos dados.....
+        Tabla tabla1 = new Tabla("123", "asd", "asd");
+        list.add(tabla1);
+        
     }
 
     @FXML
@@ -74,5 +85,11 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Json.setDisable(true);
+        Entero.setToggleGroup(TipoDeAtributo);
+        Flotante.setToggleGroup(TipoDeAtributo);
+        Cadena.setToggleGroup(TipoDeAtributo);
+        FechaHora.setToggleGroup(TipoDeAtributo);
+        Foranea.setToggleGroup(TipoEspecial);
+        Primaria.setToggleGroup(TipoEspecial);
     }
 }
