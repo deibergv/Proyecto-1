@@ -88,10 +88,10 @@ public class Commit {
                 String lineaParametros = p.nextLine();
                 if (null != lineaCommit) {
                     switch (lineaCommit) {
-                    case "Json.Crear.Archivo()":
-                        String linea2Parametros = p.nextLine();
-                        Crear.Archivo(lineaParametros, linea2Parametros);
-                        break;
+                        case "Json.Crear.Archivo()":
+                            String lineaRutaA = p.nextLine();
+                            Crear.Archivo(lineaParametros, lineaRutaA);
+                            break;
                         case "Json.Crear.Store()":
                             Crear.Store(lineaParametros);
                             break;
@@ -99,7 +99,8 @@ public class Commit {
                             Json.Eliminar.Carpeta(lineaParametros);
                             break;
                         case "Json.Eliminar.Archivo()":
-                            Json.Eliminar.Archivo(lineaParametros);
+                            String lineaRutaE = p.nextLine();
+                            Json.Eliminar.Archivo(lineaParametros, lineaRutaE);
                             break;
                         case "Json.Eliminar.Todos()":
                             Json.Eliminar.Todos(lineaParametros);

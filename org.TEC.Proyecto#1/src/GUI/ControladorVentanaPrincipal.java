@@ -25,6 +25,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.cell.TextFieldTreeCell;
 import static GUI.CreadorDeVentanas.CreadorDeVentanas;
+import static Json.MontajeDeDatos.ListaDeJsons;
+import static Json.MontajeDeDatos.ListaDeStores;
 import javafx.scene.input.KeyCombination;
 
 /**
@@ -126,9 +128,8 @@ public class ControladorVentanaPrincipal implements Initializable {
                 MenuItem NuevoStore;
                 MenuItem NuevoJson;
                 Menu MenuEliminar;
-                Menu MenuEliminarHijos;
                 MenuItem childEliminarStoreSeleccionado;
-                MenuItem childEliminarJsonSeleccionado;
+                MenuItem EliminarJsonSeleccionado;
                 MenuItem childEliminarTodos;
 
                 /**
@@ -145,14 +146,11 @@ public class ControladorVentanaPrincipal implements Initializable {
                     NuevoStore = new MenuItem("Nuevo Store");
                     NuevoJson = new MenuItem("Nuevo Json");
                     MenuEliminar = new Menu("Eliminar");
-                    MenuEliminarHijos = new Menu("Eliminar");
                     childEliminarStoreSeleccionado = new MenuItem("Eliminar Store seleccionado");
-                    childEliminarJsonSeleccionado = new MenuItem("Eliminar Json seleccionado");
+                    EliminarJsonSeleccionado = new MenuItem("Eliminar Json seleccionado");
                     childEliminarTodos = new MenuItem("Eliminar todos los Archivos");
 
-
                     MenuEliminar.getItems().addAll(childEliminarStoreSeleccionado, childEliminarTodos);
-                    MenuEliminarHijos.getItems().addAll(childEliminarJsonSeleccionado);
 
                     //Buscar.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));                                           //***********************
                     //Actualizar.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
@@ -163,10 +161,10 @@ public class ControladorVentanaPrincipal implements Initializable {
                     //childEliminarTodos.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+N"));
                     //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Delete"));
                     //childEliminarTodos.setAccelerator(KeyCombination.keyCombination("Shift+Delete")); 
-                    
+
                     contextMenuPrincipal.getItems().addAll(NuevoStore);
                     contextMenuNodo.getItems().addAll(Buscar, Actualizar, Mostrar, separador2, NuevoJson, MenuEliminar);
-                    contextMenuHijos.getItems().addAll(separador3, MenuEliminarHijos);      //montar "actualizar" especial
+                    contextMenuHijos.getItems().addAll(separador3, EliminarJsonSeleccionado);      //montar "actualizar" especial
                 }
 
 /////////////////////// Menu de opciones en cada nodo //////////////////////////
@@ -180,7 +178,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                 @Override
                 public void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
-
+                    
                     if (empty) {
                         setGraphic(null);
 
@@ -218,40 +216,46 @@ public class ControladorVentanaPrincipal implements Initializable {
                             @Override
                             public void handle(Event t) {
                                 seleccionado = getTreeItem();
-                                CreadorDeVentanas("VentanaNuevoJson");    
+                                CreadorDeVentanas("VentanaNuevoJson");
                                 BCommit.setDisable(false);                               ////Activacion de Commit
                             }
                         });
                         childEliminarStoreSeleccionado.setOnAction(new EventHandler() {
                             @Override
                             public void handle(Event t) {
-                                getTreeItem().getParent().getChildren().remove(getTreeItem());
+                                seleccionado = getTreeItem();
+                                ListaDeStores.Borrar(seleccionado.getValue());
                                 Commit.EscrituraCommit("Json.Eliminar.Carpeta()");
-                                Commit.EscrituraParametro(getTreeItem().getValue());
+                                Commit.EscrituraParametro(seleccionado.getValue());
+                                seleccionado.getParent().getChildren().remove(getTreeItem());
                                 BCommit.setDisable(false);                               ////Activacion de Commit
                             }
                         });
                         childEliminarTodos.setOnAction(new EventHandler() {///// Funcion de la opcion de Eliminar Todos los archivos de una carpeta
                             @Override
                             public void handle(Event t) {
-                                TreeItem<String> Seleccionado = getTreeItem();
-                                TreeItem NuevoBorrado = new TreeItem<String>(Seleccionado.getValue());              //****** ver si se puede mejorar**
-                                NodoPrincipal.getChildren().add(NuevoBorrado);
-                                Seleccionado.getParent().getChildren().remove(Seleccionado);
+                                seleccionado = getTreeItem();
+                                TreeItem NuevoBorrado = new TreeItem<String>(seleccionado.getValue());              //****** ver si se puede mejorar**
                                 Commit.EscrituraCommit("Json.Eliminar.Todos()");
-                                Commit.EscrituraParametro(Seleccionado.getValue());
+                                Commit.EscrituraParametro(seleccionado.getValue());
+                                ListaDeJsons.Borrar(getTreeItem().getValue());                         //// hacer que elimine todos los Jsons de adentro
+                                NodoPrincipal.getChildren().add(NuevoBorrado);
+                                seleccionado.getParent().getChildren().remove(seleccionado);
                                 BCommit.setDisable(false);                          ////Activacion de Commit
 
                             }
                         });
                         setContextMenu(contextMenuNodo);
-                    } else if (getTreeItem().isLeaf() && getTreeItem().getParent().getParent() != null) {       // Opciones de hijos hijos //
-                        childEliminarJsonSeleccionado.setOnAction(new EventHandler() {
+                    } else if (getTreeItem().isLeaf() && getTreeItem().getParent().getParent() != null) {       // Opciones de hijos //
+                        EliminarJsonSeleccionado.setOnAction(new EventHandler() {
                             @Override
                             public void handle(Event t) {
-                                getTreeItem().getParent().getChildren().remove(getTreeItem());
-                                Commit.EscrituraCommit("Json.Eliminar.Archivo()");              
+                                seleccionado = getTreeItem();
+                                Commit.EscrituraCommit("Json.Eliminar.Archivo()");
                                 Commit.EscrituraParametro(getTreeItem().getValue());
+                                Commit.EscrituraParametro(getTreeItem().getParent().getValue());
+                                seleccionado.getParent().getChildren().remove(seleccionado);
+                                ListaDeJsons.Borrar(getTreeItem().getValue());
                                 BCommit.setDisable(false);                               ////Activacion de Commit
                             }
                         });

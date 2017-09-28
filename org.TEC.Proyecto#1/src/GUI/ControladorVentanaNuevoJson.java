@@ -1,6 +1,7 @@
 package GUI;
 
 import static GUI.ControladorVentanaPrincipal.*;
+import static GUI.CreadorDeVentanas.CreadorDeVentanas;
 import static Json.MontajeDeDatos.ListaDeJsons;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +22,7 @@ import javafx.stage.Stage;
 public class ControladorVentanaNuevoJson implements Initializable {
 
     private Stage stagePrincipal;
-    
+
     public void setStagePrincipal(Stage stagePrincipal) {
         this.stagePrincipal = stagePrincipal;
     }
@@ -31,7 +32,7 @@ public class ControladorVentanaNuevoJson implements Initializable {
     @FXML
     private TextField Atributo;
 
-    @FXML                                     //cada punto de tipo de atributo
+    @FXML
     private RadioButton Entero;
     @FXML
     private RadioButton Flotante;
@@ -65,6 +66,7 @@ public class ControladorVentanaNuevoJson implements Initializable {
         Commit.EscrituraParametro(seleccionado.getValue());
         ListaDeJsons.Insertar(json);
         stagePrincipal.close();
+        CreadorDeVentanas("VentanaNuevoAtributo");
     }
 
     @FXML
@@ -74,5 +76,12 @@ public class ControladorVentanaNuevoJson implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Atributo.setDisable(true);
+        Entero.setDisable(true);
+        Flotante.setDisable(true);
+        Cadena.setDisable(true);
+        FechaHora.setDisable(true);
+        Foranea.setDisable(true);
+        Primaria.setDisable(true);
     }
 }

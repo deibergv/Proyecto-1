@@ -30,11 +30,12 @@ public class Eliminar {
     /**
      * Eliminacion de un archivo buscandolo por su nombre
      *
-     * @param NombreDeArchivo
+     * @param NombreDelArchivo
+     * @param RutaCarpeta
      */
-    public static void Archivo(String NombreDeArchivo) {
+    public static void Archivo(String NombreDelArchivo, String RutaCarpeta) {
 
-        File archivo = new File(RutaBase.RutaBase() + NombreDeArchivo + ".txt");
+        File archivo = new File(RutaBase.RutaBase() + RutaCarpeta + "/" + NombreDelArchivo + ".txt");
 
         if (archivo.exists()) {
             archivo.delete();

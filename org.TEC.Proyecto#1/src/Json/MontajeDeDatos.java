@@ -17,13 +17,6 @@ public class MontajeDeDatos {
     
     
     
-    
-    
-    
-    
-    
-    
-    
     public static String MontajeDeDatos(String Dato) {
         File Carpeta = new File(RutaBase.RutaBase());
         File[] ListaDeContenido = Carpeta.listFiles();

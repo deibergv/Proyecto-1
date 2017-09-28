@@ -14,11 +14,11 @@ import javafx.scene.control.TreeItem;
 import javafx.stage.Stage;
 
 /**
- * Constructor de la clase Nuevo Json que se encarga de la creacion del mismo
+ * Constructor de la clase Nuevo Atributo que se encarga de la creacion de los atributos
  *
  * @author deiber
  */
-public class ControladorVentanaNuevoJson_1 implements Initializable {
+public class ControladorVentanaNuevoAtributo implements Initializable {
 
     private Stage stagePrincipal;
     
@@ -31,7 +31,7 @@ public class ControladorVentanaNuevoJson_1 implements Initializable {
     @FXML
     private TextField Atributo;
 
-    @FXML                                     //cada punto de tipo de atributo
+    @FXML                                 
     private RadioButton Entero;
     @FXML
     private RadioButton Flotante;
@@ -73,5 +73,6 @@ public class ControladorVentanaNuevoJson_1 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Json.setDisable(true);
     }
 }

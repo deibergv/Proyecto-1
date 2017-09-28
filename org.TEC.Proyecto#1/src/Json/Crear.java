@@ -45,22 +45,17 @@ public class Crear {
     /**
      * Creacion respectiva de solicitud de creacion previa
      *
-     * @param NombreDelJson
+     * @param NombreDelArchivo
      * @param RutaCarpeta
      */
-    public static void Archivo(String NombreDelJson, String RutaCarpeta) {           // FALTA dirigir a carpeta a donde va a ir
+    public static void Archivo(String NombreDelArchivo, String RutaCarpeta) {           // FALTA dirigir a carpeta a donde va a ir
 
         try {
-            String ruta = RutaBase.RutaBase() + RutaCarpeta + "/" + NombreDelJson + ".txt";
+            String ruta = RutaBase.RutaBase() + RutaCarpeta + "/" + NombreDelArchivo + ".txt";
             File archivo = new File(ruta);
-
             BufferedWriter bw;
-            if (archivo.exists()) {
-                JOptionPane.showMessageDialog(null, "Ya existe un documento con ese nombre", null, JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                bw = new BufferedWriter(new FileWriter(archivo));
-                bw.close();
-            }
+            bw = new BufferedWriter(new FileWriter(archivo));
+            bw.close();
         } catch (RuntimeException e) {
             System.out.print("RuntimeException: ");
             System.out.println(e.getMessage());

@@ -58,6 +58,12 @@ public class CreadorDeVentanas {
                         controller.setStagePrincipal(ventana);
                         break;
                     }
+                    case "VentanaNuevoAtributo": {
+                        ventana.setTitle("Nuevo");
+                        ControladorVentanaNuevoAtributo controller = loader.getController();
+                        controller.setStagePrincipal(ventana);
+                        break;
+                    }
                     default:
                         break;
                 }
