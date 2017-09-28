@@ -6,11 +6,11 @@ package Listas;
  * @author deiber
  * @param <T>
  */
-public class ListaCircular<T extends Comparable<T>> {
+public class ListaDobleCircular<T extends Comparable<T>> {
 
     private Nodo<T> primero;
 
-    public ListaCircular() {
+    public ListaDobleCircular() {
         this.primero = null;
     }
 
@@ -29,7 +29,7 @@ public class ListaCircular<T extends Comparable<T>> {
     }
 
     /**
-     * Insercion basede nodo
+     * Insercion base de nodo
      *
      * @param valor
      */

@@ -88,9 +88,10 @@ public class Commit {
                 String lineaParametros = p.nextLine();
                 if (null != lineaCommit) {
                     switch (lineaCommit) {
-//                    case "Json.Crear.Archivo()":
-//                        Crear.Archivo(lineaParametros, METADATA);
-//                        break;
+                    case "Json.Crear.Archivo()":
+                        String linea2Parametros = p.nextLine();
+                        Crear.Archivo(lineaParametros, linea2Parametros);
+                        break;
                         case "Json.Crear.Store()":
                             Crear.Store(lineaParametros);
                             break;

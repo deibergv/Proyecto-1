@@ -47,13 +47,13 @@ public class CreadorDeVentanas {
                         break;
                     }
                     case "VentanaNuevoStore": {
-                        ventana.setTitle("Nuevo Store");
+                        ventana.setTitle("Nuevo");
                         ControladorVentanaNuevoStore controller = loader.getController();
                         controller.setStagePrincipal(ventana);
                         break;
                     }
                     case "VentanaNuevoJson": {
-                        ventana.setTitle("Nuevo Json");
+                        ventana.setTitle("Nuevo");
                         ControladorVentanaNuevoJson controller = loader.getController();
                         controller.setStagePrincipal(ventana);
                         break;

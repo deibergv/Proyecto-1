@@ -1,5 +1,7 @@
 package Json;
 
+import Listas.ListaDoble;
+import Listas.ListaDobleCircular;
 import java.io.File;
 
 /**
@@ -9,6 +11,19 @@ import java.io.File;
  */
 public class MontajeDeDatos {
 
+    public static ListaDoble<String> ListaDeStores = new ListaDoble<>();
+    public static ListaDobleCircular<String> ListaDeJsons = new ListaDobleCircular<>();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public static String MontajeDeDatos(String Dato) {
         File Carpeta = new File(RutaBase.RutaBase());
         File[] ListaDeContenido = Carpeta.listFiles();

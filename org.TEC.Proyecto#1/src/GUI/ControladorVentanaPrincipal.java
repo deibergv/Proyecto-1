@@ -25,6 +25,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.cell.TextFieldTreeCell;
 import static GUI.CreadorDeVentanas.CreadorDeVentanas;
+import javafx.scene.input.KeyCombination;
 
 /**
  * Constructor de la clase de la Ventana Main o principal
@@ -36,6 +37,7 @@ public class ControladorVentanaPrincipal implements Initializable {
     private Main ProgramaPrincipal;
 
     public static TreeItem<String> NodoPrincipal;
+    public static TreeItem<String> seleccionado;
 
     @FXML
     private Button BCommit;
@@ -115,18 +117,14 @@ public class ControladorVentanaPrincipal implements Initializable {
                 private final ContextMenu contextMenuNodo = new ContextMenu();
                 private final ContextMenu contextMenuHijos = new ContextMenu();
 
-                MenuItem Buscar1;
-                MenuItem Buscar2;
+                MenuItem Buscar;
                 MenuItem Actualizar;
-                MenuItem MostrarTodos;
-                MenuItem MostrarStore;
+                MenuItem Mostrar;
                 SeparatorMenuItem separador1;
                 SeparatorMenuItem separador2;
                 SeparatorMenuItem separador3;
-                Menu MenuNuevoPrincipal;
-                Menu MenuNuevoNodo;
-                MenuItem childNuevoStore;
-                MenuItem childNuevoJson;
+                MenuItem NuevoStore;
+                MenuItem NuevoJson;
                 Menu MenuEliminar;
                 Menu MenuEliminarHijos;
                 MenuItem childEliminarStoreSeleccionado;
@@ -138,40 +136,36 @@ public class ControladorVentanaPrincipal implements Initializable {
                  */
                 public OpcionesClickDerecho() {
 
-                    Buscar1 = new MenuItem("Buscar");
-                    Buscar2 = new MenuItem("Buscar");
+                    Buscar = new MenuItem("Buscar");
                     Actualizar = new MenuItem("Actualizar Jsons");
-                    MostrarTodos = new MenuItem("Mostrar todos los Jsons");
-                    MostrarStore = new MenuItem("Mostrar Jsons");
+                    Mostrar = new MenuItem("Mostrar Jsons");
                     separador1 = new SeparatorMenuItem();
                     separador2 = new SeparatorMenuItem();
                     separador3 = new SeparatorMenuItem();
-                    MenuNuevoPrincipal = new Menu("Nuevo");
-                    MenuNuevoNodo = new Menu("Nuevo");
-                    childNuevoStore = new MenuItem("Nuevo Store");
-                    childNuevoJson = new MenuItem("Nuevo Json");
+                    NuevoStore = new MenuItem("Nuevo Store");
+                    NuevoJson = new MenuItem("Nuevo Json");
                     MenuEliminar = new Menu("Eliminar");
                     MenuEliminarHijos = new Menu("Eliminar");
                     childEliminarStoreSeleccionado = new MenuItem("Eliminar Store seleccionado");
                     childEliminarJsonSeleccionado = new MenuItem("Eliminar Json seleccionado");
                     childEliminarTodos = new MenuItem("Eliminar todos los Archivos");
 
-                    MenuNuevoPrincipal.getItems().addAll(childNuevoStore);
-                    MenuNuevoNodo.getItems().addAll(childNuevoJson);
 
                     MenuEliminar.getItems().addAll(childEliminarStoreSeleccionado, childEliminarTodos);
                     MenuEliminarHijos.getItems().addAll(childEliminarJsonSeleccionado);
 
-                    //Buscar.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));                                           ***********************
+                    //Buscar.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));                                           //***********************
                     //Actualizar.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
                     //Mostrar.setAccelerator(KeyCombination.keyCombination("Ctrl+M"));
-                    //Nuevo.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
+                    NuevoStore.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
+                    //NuevoJson.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+N"));
                     //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
                     //childEliminarTodos.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+N"));
                     //childEliminarUno.setAccelerator(KeyCombination.keyCombination("Delete"));
                     //childEliminarTodos.setAccelerator(KeyCombination.keyCombination("Shift+Delete")); 
-                    contextMenuPrincipal.getItems().addAll(Buscar1, MostrarTodos, separador1, MenuNuevoPrincipal);
-                    contextMenuNodo.getItems().addAll(Buscar2, Actualizar, MostrarStore, separador2, MenuNuevoNodo, MenuEliminar);
+                    
+                    contextMenuPrincipal.getItems().addAll(NuevoStore);
+                    contextMenuNodo.getItems().addAll(Buscar, Actualizar, Mostrar, separador2, NuevoJson, MenuEliminar);
                     contextMenuHijos.getItems().addAll(separador3, MenuEliminarHijos);      //montar "actualizar" especial
                 }
 
@@ -191,19 +185,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                         setGraphic(null);
 
                     } else if (!empty && getTreeItem().getParent() == null) {           // opciones de Nodo Principal //
-                        Buscar1.setOnAction(new EventHandler() {
-                            @Override
-                            public void handle(Event t) {
-                                CreadorDeVentanas("VentanaBusqueda");
-                            }
-                        });
-                        MostrarTodos.setOnAction(new EventHandler() {///// Funcion de la opcion de Mostrar
-                            @Override
-                            public void handle(Event t) {
-                                table.setItems(list);
-                            }
-                        });
-                        childNuevoStore.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Store
+                        NuevoStore.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Store
                             @Override
                             public void handle(Event t) {
                                 CreadorDeVentanas("VentanaNuevoStore");
@@ -213,7 +195,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                         setContextMenu(contextMenuPrincipal);
 
                     } else if (getTreeItem().getParent() == NodoPrincipal) {          // Opciones de Nodos //
-                        Buscar2.setOnAction(new EventHandler() {
+                        Buscar.setOnAction(new EventHandler() {
                             @Override
                             public void handle(Event t) {
                                 CreadorDeVentanas("VentanaBusqueda");
@@ -222,22 +204,21 @@ public class ControladorVentanaPrincipal implements Initializable {
                         Actualizar.setOnAction(new EventHandler() {///// Funcion de la opcion de Actualizacion
                             @Override
                             public void handle(Event t) {
-                                CreadorDeVentanas("VentanaActualizacion");                                              //********************
+                                CreadorDeVentanas("VentanaActualizacion");                                     //********************
                                 BCommit.setDisable(false);                      ////Activacion de Commit
                             }
                         });
-                        MostrarStore.setOnAction(new EventHandler() {///// Funcion de la opcion de Mostrar
+                        Mostrar.setOnAction(new EventHandler() {///// Funcion de la opcion de Mostrar
                             @Override
                             public void handle(Event t) {
-                                table.setItems(list);                                                                               // ********************
+                                table.setItems(list);                                                            // ********************
                             }
                         });
-                        childNuevoJson.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Objeto
+                        NuevoJson.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Objeto
                             @Override
                             public void handle(Event t) {
-//                                TreeItem<String> NuevoStore = new TreeItem<String>("NuevoJson");
-//                                NodoPrincipal.getChildren().add(NuevoStore);
-                                CreadorDeVentanas("VentanaNuevoJson");                                                        //**********************
+                                seleccionado = getTreeItem();
+                                CreadorDeVentanas("VentanaNuevoJson");    
                                 BCommit.setDisable(false);                               ////Activacion de Commit
                             }
                         });
@@ -265,18 +246,11 @@ public class ControladorVentanaPrincipal implements Initializable {
                         });
                         setContextMenu(contextMenuNodo);
                     } else if (getTreeItem().isLeaf() && getTreeItem().getParent().getParent() != null) {       // Opciones de hijos hijos //
-//                        Actualizar.setOnAction(new EventHandler() {///// Funcion de la opcion de Actualizacion
-//                            @Override
-//                            public void handle(Event t) {
-//                                CreadorDeVentanas("VentanaActualizacion");                                              //********************
-//                                BCommit.setDisable(false);                      ////Activacion de Commit
-//                            }
-//                        });
                         childEliminarJsonSeleccionado.setOnAction(new EventHandler() {
                             @Override
                             public void handle(Event t) {
                                 getTreeItem().getParent().getChildren().remove(getTreeItem());
-                                Commit.EscrituraCommit("Json.Eliminar.Archivo()");                        // CAMBIAR EL ELIMINAR por JSON **************
+                                Commit.EscrituraCommit("Json.Eliminar.Archivo()");              
                                 Commit.EscrituraParametro(getTreeItem().getValue());
                                 BCommit.setDisable(false);                               ////Activacion de Commit
                             }

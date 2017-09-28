@@ -1,6 +1,7 @@
 package GUI;
 
-import static GUI.ControladorVentanaPrincipal.NodoPrincipal;
+import static GUI.ControladorVentanaPrincipal.*;
+import static Json.MontajeDeDatos.ListaDeStores;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,16 +21,18 @@ import javafx.stage.Stage;
 public class ControladorVentanaNuevoStore implements Initializable {
 
     private Stage stagePrincipal;
-
+    
     public void setStagePrincipal(Stage stagePrincipal) {
         this.stagePrincipal = stagePrincipal;
     }
 
     @FXML
-    private TextField Texto;
+    private TextField Store;
 
     @FXML
     private Button Aceptar;
+    @FXML
+    private Button Cancelar;
 
     /**
      * Creacion del nuevo nodo con su respectivo nombre
@@ -38,19 +41,17 @@ public class ControladorVentanaNuevoStore implements Initializable {
      */
     @FXML
     private void Aceptar(ActionEvent event) {
-        String texto = (Texto.getText());
-        stagePrincipal.close();
-        TreeItem<String> NuevoStore = new TreeItem<String>(texto);
-        TreeItem<String> NuevoJson = new TreeItem<String>(texto);
-//        NuevoStore.getChildren().add(NuevoJson);
+        String store = (Store.getText());
+        TreeItem<String> NuevoStore = new TreeItem<String>(store);
         NodoPrincipal.getChildren().add(NuevoStore);
-        NuevoStore.getChildren().add(NuevoJson);
         Commit.EscrituraCommit("Json.Crear.Store()");
-        Commit.EscrituraParametro("TEST");
+        Commit.EscrituraParametro(store);
+        ListaDeStores.Insertar(store);
+        stagePrincipal.close();
     }
 
     @FXML
-    private void salirVentana(ActionEvent event) {
+    private void Cancelar(ActionEvent event) {
         stagePrincipal.close();
     }
 

@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  *
  * @author deiber
  */
-public class ControladorVentanaNuevoJson implements Initializable {
+public class ControladorVentanaNuevoJson_1 implements Initializable {
 
     private Stage stagePrincipal;
     
@@ -61,8 +61,7 @@ public class ControladorVentanaNuevoJson implements Initializable {
         TreeItem<String> NuevoJson = new TreeItem<String>(json);
         seleccionado.getChildren().add(NuevoJson);
         Commit.EscrituraCommit("Json.Crear.Archivo()");
-        Commit.EscrituraParametro(json);
-        Commit.EscrituraParametro(seleccionado.getValue());
+        Commit.EscrituraParametro(json);                        ///// arreglar entrada de info
         ListaDeJsons.Insertar(json);
         stagePrincipal.close();
     }

@@ -46,9 +46,37 @@ public class Crear {
      * Creacion respectiva de solicitud de creacion previa
      *
      * @param NombreDelJson
+     * @param RutaCarpeta
+     */
+    public static void Archivo(String NombreDelJson, String RutaCarpeta) {           // FALTA dirigir a carpeta a donde va a ir
+
+        try {
+            String ruta = RutaBase.RutaBase() + RutaCarpeta + "/" + NombreDelJson + ".txt";
+            File archivo = new File(ruta);
+
+            BufferedWriter bw;
+            if (archivo.exists()) {
+                JOptionPane.showMessageDialog(null, "Ya existe un documento con ese nombre", null, JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                bw = new BufferedWriter(new FileWriter(archivo));
+                bw.close();
+            }
+        } catch (RuntimeException e) {
+            System.out.print("RuntimeException: ");
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.print("Exception: ");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Agregado informacion a cada Json
+     *
+     * @param NombreDelJson
      * @param Nuevo
      */
-    public static void Archivo(String NombreDelJson, Metadata Nuevo) {           // FALTA dirigir a carpeta a donde va a ir
+    public static void Informacion(String NombreDelJson, Metadata Nuevo) {           // FALTA dirigir a carpeta a donde va a ir
 
         try {
 //            Metadata Nuevo = new Metadata("a", "b", "c", "d", "f", "g");        //ingreso de informacion al nuevo Json
