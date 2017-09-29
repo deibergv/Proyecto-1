@@ -77,29 +77,30 @@ public class ControladorVentanaPrincipal implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        carne.setText("asdasd");
+        
+        TableColumn<Tabla, String> ajja = new TableColumn<>();
+        TableColumn<Tabla, String> ajja1 = new TableColumn<>();
+        TableColumn<Tabla, String> ajja2 = new TableColumn<>();
+        table.getColumns().addAll(ajja, ajja1, ajja2);
+        
+        
+        
+        /////////////////////////////////////tabla////////////////////////////////////////
+//        carne.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carne"));
+//        nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));
+//        carrera.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carrera"));
+        
+        
         ///////////////////////////////////arbol////////////////////////////////////////
         NodoPrincipal = new TreeItem<>("LinkedDB", new ImageView(IconFolder));
         NodoPrincipal.setExpanded(true);
         treeView.setRoot(NodoPrincipal);
 
-        TreeItem<String> Store = new TreeItem<>("CE-1103", new ImageView(IconFolder));
-//        TreeItem<String> nodeB = new TreeItem<>("Int. al bostezo", new ImageView(IconFolder));
-//        TreeItem<String> nodeC = new TreeItem<>("Comunicación Técnica", new ImageView(IconFolder));
-
-        NodoPrincipal.getChildren().addAll(Store);
-//        NodoPrincipal.getChildren().addAll(nodeA, nodeB, nodeC);
-
-        TreeItem<String> Atributo = new TreeItem<>("Carné");
-//        TreeItem<String> nodeB1 = new TreeItem<>("Nombre");
-//        TreeItem<String> nodeC1 = new TreeItem<>("Curso");
-        Store.getChildren().add(Atributo);
-//        nodeB.getChildren().add(nodeB1);
-//        nodeC.getChildren().add(nodeC1);
-
-/////////////////////////////////////tabla////////////////////////////////////////
-        carne.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carne"));
-        nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));
-        carrera.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carrera"));
+//        TreeItem<String> Store = new TreeItem<>("CE-1103", new ImageView(IconFolder));
+//        NodoPrincipal.getChildren().addAll(Store);
+//        TreeItem<String> Atributo = new TreeItem<>("Carné");
+//        Store.getChildren().add(Atributo);
 
 //////////////////////////////////MenuDeArbol///////////////////////////////////
         treeView.setCellFactory(new Callback<TreeView<String>, TreeCell<String>>() {

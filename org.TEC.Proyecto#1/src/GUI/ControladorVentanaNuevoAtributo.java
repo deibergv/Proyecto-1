@@ -2,7 +2,7 @@ package GUI;
 
 import static GUI.ControladorVentanaPrincipal.*;
 import static GUI.CreadorDeVentanas.CreadorDeVentanas;
-import static Json.MontajeDeDatos.ListaDeJsons;
+import static Json.MontajeDeDatos.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -63,20 +63,29 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
     @FXML
     private void Aceptar(ActionEvent event) {
         String json = (Json.getText());
-        TreeItem<String> NuevoJson = new TreeItem<String>(json);
         Commit.EscrituraCommit("Json.Crear.Archivo()");     //// creacion de atributo
         Commit.EscrituraParametro(json);                        ///// arreglar entrada de info
-        ListaDeJsons.Insertar(json);
+        ListaDeAtributos.Insertar(json);
+
+        /// segun boton marcado, agregar eso a lista
+        if (TipoDeAtributo.getSelectedToggle() != null) {
+            String AtributoApretado = TipoDeAtributo.getSelectedToggle().getUserData().toString();
+            TipoDeAtributos.Insertar(AtributoApretado);
+        }
+
+        if (TipoEspecial.getSelectedToggle() != null) {
+            String LlaveApretada = TipoEspecial.getSelectedToggle().getUserData().toString();
+            TiposEspecial.Insertar(LlaveApretada);
+        }
         
         stagePrincipal.close();
         CreadorDeVentanas("VentanaNuevoAtributo");
-        
+
         // hacer que se haga una nueva columna con atributo....................
-        
         ////                         hacer que hojas permitan agregar objetos segun atributos dados.....
         Tabla tabla1 = new Tabla("123", "asd", "asd");              //// esto es de nuevo OBJETOS
         list.add(tabla1);
-        
+
     }
 
     @FXML
@@ -86,14 +95,20 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Entero.setUserData("I");                                                //Integer
+        Flotante.setUserData("F");                                              //Float
+        Cadena.setUserData("S");                                                //String
+        FechaHora.setUserData("FH");                                            //Fecha-Hora
+        Foranea.setUserData("Foran");                                             //Llave Foranea
+        Primaria.setUserData("Prima");                                            //Llave Primaria
         Json.setDisable(true);
+        Cadena.setSelected(true);
+        Foranea.setSelected(true);
         Entero.setToggleGroup(TipoDeAtributo);
         Flotante.setToggleGroup(TipoDeAtributo);
         Cadena.setToggleGroup(TipoDeAtributo);
-        Cadena.setSelected(true);
         FechaHora.setToggleGroup(TipoDeAtributo);
         Foranea.setToggleGroup(TipoEspecial);
         Primaria.setToggleGroup(TipoEspecial);
-        Foranea.setSelected(true);
     }
 }

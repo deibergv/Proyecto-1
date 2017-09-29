@@ -92,6 +92,10 @@ public class Commit {
                             String lineaRutaA = p.nextLine();
                             Crear.Archivo(lineaParametros, lineaRutaA);
                             break;
+//                        case "Json.Crear.Informacion()":
+//                            String Info = p.nextLine();
+//                            Crear.Informacion(lineaParametros, Info);
+//                            break;
                         case "Json.Crear.Store()":
                             Crear.Store(lineaParametros);
                             break;

@@ -1,7 +1,6 @@
 package Json;
 
-import Listas.ListaDoble;
-import Listas.ListaDobleCircular;
+import Listas.*;
 import java.io.File;
 
 /**
@@ -13,22 +12,20 @@ public class MontajeDeDatos {
 
     public static ListaDoble<String> ListaDeStores = new ListaDoble<>();
     public static ListaDobleCircular<String> ListaDeJsons = new ListaDobleCircular<>();
-    
-    
-    
-    
+    public static ListaSimple<String> ListaDeAtributos = new ListaSimple<>();
+    public static ListaSimple<String> TipoDeAtributos = new ListaSimple<>();
+    public static ListaSimple<String> TiposEspecial = new ListaSimple<>();
+
     public static String MontajeDeDatos(String Dato) {
         File Carpeta = new File(RutaBase.RutaBase());
         File[] ListaDeContenido = Carpeta.listFiles();
         String ListaDeDatos = "";
         ListaDeDatos += ArchivosDeCarpeta(ListaDeContenido, Dato);
         System.out.println(ListaDeDatos);
-        
-        
+
 //        ListaSimple<String> Test = new ListaSimple<>();
 //        for(){}    
 //        Test.Insertar("primeroHOla");        
-        
         return ArchivosDeCarpeta(ListaDeContenido, Dato);
 
     }
