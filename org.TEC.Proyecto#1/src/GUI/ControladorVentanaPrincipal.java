@@ -122,7 +122,9 @@ public class ControladorVentanaPrincipal implements Initializable {
                 SeparatorMenuItem separador3;
                 MenuItem NuevoStore;
                 MenuItem NuevoJson;
+                Menu MenuNuevo;
                 MenuItem NuevoAtributo;
+                MenuItem NuevoObjeto;
                 Menu MenuEliminar;
                 MenuItem childEliminarStoreSeleccionado;
                 MenuItem EliminarJsonSeleccionado;
@@ -141,23 +143,21 @@ public class ControladorVentanaPrincipal implements Initializable {
                     separador3 = new SeparatorMenuItem();
                     NuevoStore = new MenuItem("Nuevo Store");
                     NuevoJson = new MenuItem("Nuevo Json");
+                    MenuNuevo = new Menu("Nuevo");
                     NuevoAtributo = new MenuItem("Nuevo Atributo");
+                    NuevoObjeto = new MenuItem("Nuevo Objeto");
                     MenuEliminar = new Menu("Eliminar");
                     childEliminarStoreSeleccionado = new MenuItem("Eliminar Store seleccionado");
                     EliminarJsonSeleccionado = new MenuItem("Eliminar Json seleccionado");
                     childEliminarTodos = new MenuItem("Eliminar todos los Archivos");
-
                     MenuEliminar.getItems().addAll(childEliminarStoreSeleccionado, childEliminarTodos);
+                    MenuNuevo.getItems().addAll(NuevoAtributo, NuevoObjeto);
 
-                    //Buscar.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));                                           //***********************
-                    //Actualizar.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
-                    //Mostrar.setAccelerator(KeyCombination.keyCombination("Ctrl+M"));
                     NuevoStore.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
-                    //NuevoJson.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+N"));
 
                     contextMenuPrincipal.getItems().addAll(NuevoStore);
                     contextMenuNodo.getItems().addAll(Buscar, Actualizar, Mostrar, separador2, NuevoJson, MenuEliminar);
-                    contextMenuHijos.getItems().addAll(NuevoAtributo, separador3, EliminarJsonSeleccionado);
+                    contextMenuHijos.getItems().addAll(MenuNuevo, separador3, EliminarJsonSeleccionado);
                 }
 
 /////////////////////// Menu de opciones en cada nodo //////////////////////////
@@ -184,7 +184,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                                 BCommit.setDisable(false);                      ////Activacion de Commit
                             }
                         });
-                        
+
                     } else if (getTreeItem().getParent() == NodoPrincipal) {          // Opciones de Nodos //
                         setContextMenu(contextMenuNodo);
                         Buscar.setOnAction(new EventHandler() {
@@ -259,6 +259,14 @@ public class ControladorVentanaPrincipal implements Initializable {
                             public void handle(Event t) {
                                 seleccionado = getTreeItem();
                                 CreadorDeVentanas("VentanaNuevoAtributo");
+                                BCommit.setDisable(false);                      ////Activacion de Commit
+                            }
+                        });
+                        NuevoObjeto.setOnAction(new EventHandler() {
+                            @Override
+                            public void handle(Event t) {
+                                seleccionado = getTreeItem();
+                                CreadorDeVentanas("VentanaNuevoObjeto");   ////TIENE que agarrar columnas y segun eso permitir o no info de entrada
                                 BCommit.setDisable(false);                      ////Activacion de Commit
                             }
                         });

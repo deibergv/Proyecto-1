@@ -1,6 +1,7 @@
 package GUI;
 
 import static GUI.ControladorVentanaPrincipal.*;
+import static GUI.CreadorDeVentanas.CreadorDeVentanas;
 import static Json.MontajeDeDatos.ListaDeJsons;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -63,16 +64,17 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
     private void Aceptar(ActionEvent event) {
         String json = (Json.getText());
         TreeItem<String> NuevoJson = new TreeItem<String>(json);
-//        seleccionado.getChildren().add(NuevoJson);
         Commit.EscrituraCommit("Json.Crear.Archivo()");     //// creacion de atributo
         Commit.EscrituraParametro(json);                        ///// arreglar entrada de info
         ListaDeJsons.Insertar(json);
         
+        stagePrincipal.close();
+        CreadorDeVentanas("VentanaNuevoAtributo");
         
-//        stagePrincipal.close();           /// sin el close para que se agreguen todos los atributos que se desee
+        // hacer que se haga una nueva columna con atributo....................
         
-        //// hacer que cree una columna en la tabla                         hacer que hojas permitar agregar objetos segun atributos dados.....
-        Tabla tabla1 = new Tabla("123", "asd", "asd");
+        ////                         hacer que hojas permitan agregar objetos segun atributos dados.....
+        Tabla tabla1 = new Tabla("123", "asd", "asd");              //// esto es de nuevo OBJETOS
         list.add(tabla1);
         
     }
@@ -88,8 +90,10 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
         Entero.setToggleGroup(TipoDeAtributo);
         Flotante.setToggleGroup(TipoDeAtributo);
         Cadena.setToggleGroup(TipoDeAtributo);
+        Cadena.setSelected(true);
         FechaHora.setToggleGroup(TipoDeAtributo);
         Foranea.setToggleGroup(TipoEspecial);
         Primaria.setToggleGroup(TipoEspecial);
+        Foranea.setSelected(true);
     }
 }

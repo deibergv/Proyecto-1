@@ -66,7 +66,9 @@ public class ControladorVentanaNuevoJson implements Initializable {
         Commit.EscrituraParametro(seleccionado.getValue());
         ListaDeJsons.Insertar(json);
         stagePrincipal.close();
-        CreadorDeVentanas("VentanaNuevoAtributo");
+        
+        seleccionado = NuevoJson;
+        CreadorDeVentanas("VentanaNuevoAtributo");                              // Añadido de atributos base
     }
 
     @FXML
