@@ -10,9 +10,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.TreeItem;
 import javafx.stage.Stage;
 
 /**
@@ -62,11 +62,15 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
      */
     @FXML
     private void Aceptar(ActionEvent event) {
-        String json = (Json.getText());
+        String json = (Atributo.getText());
         Commit.EscrituraCommit("Json.Crear.Archivo()");     //// creacion de atributo
         Commit.EscrituraParametro(json);                        ///// arreglar entrada de info
         ListaDeAtributos.Insertar(json);
-
+        
+        TableColumn<Tabla, String> columna = new TableColumn<>();
+        columna.setText(json);
+        tabla.getColumns().add(columna);
+        
         /// segun boton marcado, agregar eso a lista
         if (TipoDeAtributo.getSelectedToggle() != null) {
             String AtributoApretado = TipoDeAtributo.getSelectedToggle().getUserData().toString();
@@ -77,14 +81,14 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
             String LlaveApretada = TipoEspecial.getSelectedToggle().getUserData().toString();
             TiposEspecial.Insertar(LlaveApretada);
         }
-        
+
         stagePrincipal.close();
         CreadorDeVentanas("VentanaNuevoAtributo");
+        
+        BotonCommit.setDisable(false);                                          ////Activacion de Commit
 
         // hacer que se haga una nueva columna con atributo....................
-        ////                         hacer que hojas permitan agregar objetos segun atributos dados.....
-        Tabla tabla1 = new Tabla("123", "asd", "asd");              //// esto es de nuevo OBJETOS
-        list.add(tabla1);
+        
 
     }
 

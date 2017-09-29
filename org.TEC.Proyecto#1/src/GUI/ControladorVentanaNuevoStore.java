@@ -58,7 +58,7 @@ public class ControladorVentanaNuevoStore implements Initializable {
         Commit.EscrituraParametro(store);
         ListaDeStores.Insertar(store);
         stagePrincipal.close();
-
+        BotonCommit.setDisable(false);                                          ////Activacion de Commit
         seleccionado = JsonBase;
         CreadorDeVentanas("VentanaNuevoAtributo");                              // Añadido de atributos base
     }

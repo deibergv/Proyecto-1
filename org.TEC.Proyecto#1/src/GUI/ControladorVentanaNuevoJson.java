@@ -66,7 +66,7 @@ public class ControladorVentanaNuevoJson implements Initializable {
         Commit.EscrituraParametro(seleccionado.getValue());
         ListaDeJsons.Insertar(json);
         stagePrincipal.close();
-        
+        BotonCommit.setDisable(false);                                          ////Activacion de Commit
         seleccionado = NuevoJson;
         CreadorDeVentanas("VentanaNuevoAtributo");                              // Añadido de atributos base
     }

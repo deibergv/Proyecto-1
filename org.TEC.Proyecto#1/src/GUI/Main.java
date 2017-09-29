@@ -15,8 +15,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Stage stagePrincipal;
-    private AnchorPane rootPane;
+    public static Stage stagePrincipal;
+    public static AnchorPane rootPane;
 
     /**
      * Creacion de ventanas segun su respectiva invocacion
@@ -31,6 +31,7 @@ public class Main extends Application {
                 rootPane = (AnchorPane) loader.load();
                 Scene scene = new Scene(rootPane);
                 stagePrincipal.setResizable(false);
+//                stagePrincipal.initModality(Modality.WINDOW_MODAL);
                 stagePrincipal.setScene(scene);
                 stagePrincipal.setTitle("LinkedDB");
                 ControladorVentanaPrincipal controller = loader.getController();

@@ -37,8 +37,9 @@ public class Commit {
                 if (null != Funcion) {
                     Funcion.close();
                 }
-            } catch (Exception e2) {
-                e2.printStackTrace();
+            } catch (Exception ex) {
+                System.out.println(ex.toString());
+                System.out.println("Error en commit");
             }
         }
     }
@@ -66,7 +67,8 @@ public class Commit {
                     Funcion.close();
                 }
             } catch (Exception e2) {
-                e2.printStackTrace();
+                System.out.println(e2.toString());
+                System.out.println("Error en commit");
             }
         }
     }
@@ -116,7 +118,8 @@ public class Commit {
             }
             c.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
+            System.out.println("Error en commit");
         }
     }
 

@@ -1,5 +1,6 @@
 package GUI;
 
+import static GUI.Main.stagePrincipal;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,8 +14,6 @@ import javafx.stage.Stage;
  * @author deiber
  */
 public class CreadorDeVentanas {
-
-    public static Stage stagePrincipal;
 
     /**
      * Filtro de creacion

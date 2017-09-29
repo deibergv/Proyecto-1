@@ -7,16 +7,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="482.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControladorVentanaPrincipal">
+<AnchorPane id="AnchorPane" prefHeight="482.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControladorVentanaPrincipal">
     <children>
         <Button fx:id="BCommit" disable="true" layoutX="8.0" layoutY="435.0" onAction="#Commit" prefHeight="35.0" prefWidth="189.0" text="Commit" />
       <TreeView fx:id="treeView" editable="false" layoutX="8.0" layoutY="7.0" prefHeight="424.0" prefWidth="189.0" />
-      <TableView fx:id="table" layoutX="203.0" layoutY="7.0" prefHeight="471.0" prefWidth="423.0">
-        <columns>
-          <TableColumn fx:id="carne" prefWidth="141.0" text="Carné" />
-          <TableColumn fx:id="nombre" prefWidth="137.0" text="Estudiante" />
-            <TableColumn fx:id="carrera" prefWidth="144.0" text="Carrera" />
-        </columns>
-      </TableView>
+      <TableView fx:id="table" layoutX="203.0" layoutY="7.0" prefHeight="471.0" prefWidth="564.0" />
     </children>
 </AnchorPane>

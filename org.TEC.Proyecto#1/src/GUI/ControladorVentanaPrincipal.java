@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
@@ -40,6 +39,9 @@ public class ControladorVentanaPrincipal implements Initializable {
 
     public static TreeItem<String> NodoPrincipal;
     public static TreeItem<String> seleccionado;
+    public static TableView<Tabla> tabla;
+    public static Button BotonCommit;
+    public static ObservableList<Tabla> list = FXCollections.observableArrayList();
 
     @FXML
     private Button BCommit;
@@ -66,41 +68,23 @@ public class ControladorVentanaPrincipal implements Initializable {
         Commit.BorrarCommit();
         BCommit.setDisable(true);                                                //// Desactiva el boton ///
     }
-    @FXML
-    private TableColumn<Tabla, String> carne;
-    @FXML
-    private TableColumn<Tabla, String> nombre;
-    @FXML
-    private TableColumn<Tabla, String> carrera;
-
-    public static ObservableList<Tabla> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        carne.setText("asdasd");
-        
-        TableColumn<Tabla, String> ajja = new TableColumn<>();
-        TableColumn<Tabla, String> ajja1 = new TableColumn<>();
-        TableColumn<Tabla, String> ajja2 = new TableColumn<>();
-        table.getColumns().addAll(ajja, ajja1, ajja2);
-        
-        
-        
-        /////////////////////////////////////tabla////////////////////////////////////////
+        BotonCommit = BCommit;
+        tabla = table;
+//        TableColumn<Tabla, String> ajja = new TableColumn<>();
+//        ajja.setText("TEST");
+//        tabla.getColumns().add(ajja);
+/////////////////////////////////////tabla////////////////////////////////////////
 //        carne.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carne"));
 //        nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));
 //        carrera.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carrera"));
-        
-        
-        ///////////////////////////////////arbol////////////////////////////////////////
+
+///////////////////////////////////arbol////////////////////////////////////////
         NodoPrincipal = new TreeItem<>("LinkedDB", new ImageView(IconFolder));
         NodoPrincipal.setExpanded(true);
         treeView.setRoot(NodoPrincipal);
-
-//        TreeItem<String> Store = new TreeItem<>("CE-1103", new ImageView(IconFolder));
-//        NodoPrincipal.getChildren().addAll(Store);
-//        TreeItem<String> Atributo = new TreeItem<>("Carné");
-//        Store.getChildren().add(Atributo);
 
 //////////////////////////////////MenuDeArbol///////////////////////////////////
         treeView.setCellFactory(new Callback<TreeView<String>, TreeCell<String>>() {
@@ -182,7 +166,6 @@ public class ControladorVentanaPrincipal implements Initializable {
                             @Override
                             public void handle(Event t) {
                                 CreadorDeVentanas("VentanaNuevoStore");
-                                BCommit.setDisable(false);                      ////Activacion de Commit
                             }
                         });
 
@@ -198,7 +181,6 @@ public class ControladorVentanaPrincipal implements Initializable {
                             @Override
                             public void handle(Event t) {
                                 CreadorDeVentanas("VentanaActualizacion");                                     //********************
-                                BCommit.setDisable(false);                      ////Activacion de Commit
                             }
                         });
                         Mostrar.setOnAction(new EventHandler() {///// Funcion de la opcion de Mostrar
@@ -212,7 +194,6 @@ public class ControladorVentanaPrincipal implements Initializable {
                             public void handle(Event t) {
                                 seleccionado = getTreeItem();
                                 CreadorDeVentanas("VentanaNuevoJson");
-                                BCommit.setDisable(false);                      ////Activacion de Commit
                             }
                         });
                         childEliminarStoreSeleccionado.setOnAction(new EventHandler() {
@@ -260,7 +241,6 @@ public class ControladorVentanaPrincipal implements Initializable {
                             public void handle(Event t) {
                                 seleccionado = getTreeItem();
                                 CreadorDeVentanas("VentanaNuevoAtributo");
-                                BCommit.setDisable(false);                      ////Activacion de Commit
                             }
                         });
                         NuevoObjeto.setOnAction(new EventHandler() {
@@ -268,10 +248,8 @@ public class ControladorVentanaPrincipal implements Initializable {
                             public void handle(Event t) {
                                 seleccionado = getTreeItem();
                                 CreadorDeVentanas("VentanaNuevoObjeto");   ////TIENE que agarrar columnas y segun eso permitir o no info de entrada
-                                BCommit.setDisable(false);                      ////Activacion de Commit
                             }
                         });
-
                     } else {
                         return;
                     }
