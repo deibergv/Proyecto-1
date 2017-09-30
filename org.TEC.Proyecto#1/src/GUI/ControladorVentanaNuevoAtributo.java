@@ -66,11 +66,11 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
         Commit.EscrituraCommit("Json.Crear.Archivo()");     //// creacion de atributo
         Commit.EscrituraParametro(json);                        ///// arreglar entrada de info
         ListaDeAtributos.Insertar(json);
-        
+
         TableColumn<Tabla, String> columna = new TableColumn<>();
         columna.setText(json);
         tabla.getColumns().add(columna);
-        
+
         /// segun boton marcado, agregar eso a lista
         if (TipoDeAtributo.getSelectedToggle() != null) {
             String AtributoApretado = TipoDeAtributo.getSelectedToggle().getUserData().toString();
@@ -81,15 +81,9 @@ public class ControladorVentanaNuevoAtributo implements Initializable {
             String LlaveApretada = TipoEspecial.getSelectedToggle().getUserData().toString();
             TiposEspecial.Insertar(LlaveApretada);
         }
-
         stagePrincipal.close();
         CreadorDeVentanas("VentanaNuevoAtributo");
-        
         BotonCommit.setDisable(false);                                          ////Activacion de Commit
-
-        // hacer que se haga una nueva columna con atributo....................
-        
-
     }
 
     @FXML
