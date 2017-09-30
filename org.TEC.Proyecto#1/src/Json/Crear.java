@@ -35,7 +35,8 @@ public class Crear {
         File Carpeta = new File(RutaBase.RutaBase() + NombreDeCarpeta);
 
         if (Carpeta.exists() && Carpeta.isDirectory()) {
-            JOptionPane.showMessageDialog(null, "Ya existe una carpeta con ese nombre", null, JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ya existe una carpeta con ese nombre, reescribiendo", null, JOptionPane.WARNING_MESSAGE);
+            Carpeta.mkdir();
         } else {
             Carpeta.mkdir();
             JOptionPane.showMessageDialog(null, "Carpeta creada de forma exitosa", null, JOptionPane.INFORMATION_MESSAGE);  /////////////////////

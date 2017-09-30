@@ -63,6 +63,12 @@ public class CreadorDeVentanas {
                         controller.setStagePrincipal(ventana);
                         break;
                     }
+                    case "VentanaNuevoObjeto": {
+                        ventana.setTitle("Nuevo Objeto");
+                        ControladorVentanaNuevoObjeto controller = loader.getController();
+                        controller.setStagePrincipal(ventana);
+                        break;
+                    }
                     default:
                         break;
                 }

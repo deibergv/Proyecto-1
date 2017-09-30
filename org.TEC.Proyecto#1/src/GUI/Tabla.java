@@ -1,5 +1,6 @@
 package GUI;
 
+import static GUI.ControladorVentanaNuevoObjeto.MenuAtributos;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -8,7 +9,20 @@ import javafx.beans.property.SimpleStringProperty;
  * @author deiber
  */
 public class Tabla { ///////////////Parametros base de Tabla////////////////////
-
+//
+//    public CreacionDeColumnas(String nombre, String tipo){
+//        
+//    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private final SimpleStringProperty carne;
     private final SimpleStringProperty nombre;
     private final SimpleStringProperty carrera;
@@ -30,5 +44,8 @@ public class Tabla { ///////////////Parametros base de Tabla////////////////////
 
     public String getCarrera() {
         return carrera.get();
+    }
+    
+    public static void main(String[] args) {
     }
 }
