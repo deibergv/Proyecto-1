@@ -25,6 +25,8 @@ import javafx.scene.control.cell.TextFieldTreeCell;
 import static GUI.CreadorDeVentanas.CreadorDeVentanas;
 import static Json.MontajeDeDatos.ListaDeJsons;
 import static Json.MontajeDeDatos.ListaDeStores;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCombination;
 
 /**
@@ -70,11 +72,26 @@ public class ControladorVentanaPrincipal implements Initializable {
 
     public TreeItem<String> IntBostezo;
     public TreeItem<String> Bostezo;
+    public static ObservableList<Tabla> list2 = FXCollections.observableArrayList(
+            new Tabla("123", "Pedro", "Cuenta vacas"),
+            new Tabla("456", "Leiner", "Biotecnologia"),
+            new Tabla("678", "Felipe", "Computacion")
+    );
+    @FXML
+    private TableColumn<Tabla, String> carne;
+    @FXML
+    private TableColumn<Tabla, String> nombre;
+    @FXML
+    private TableColumn<Tabla, String> carrera;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         BotonCommit = BCommit;
         tabla = table;
-
+        ///////////////////////////////////tabla////////////////////////////////////////
+        carne.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carne"));
+        nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));
+        carrera.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carrera"));
 ///////////////////////////////////arbol////////////////////////////////////////
         NodoPrincipal = new TreeItem<>("LinkedDB", new ImageView(IconFolder));
         NodoPrincipal.setExpanded(true);
@@ -133,7 +150,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                     EliminarJsonSeleccionado = new MenuItem("Eliminar Json seleccionado");
                     childEliminarTodos = new MenuItem("Eliminar todos los documentos");
                     MenuEliminar.getItems().addAll(childEliminarStoreSeleccionado, childEliminarTodos);
-                    MenuNuevo.getItems().addAll(NuevoAtributo, NuevoObjeto);
+                    MenuNuevo.getItems().addAll(NuevoObjeto, NuevoAtributo);
 
                     NuevoStore.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
 
@@ -162,6 +179,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                         NuevoStore.setOnAction(new EventHandler() {///// Funcion de la opcion de Agregar Nuevo Store
                             @Override
                             public void handle(Event t) {
+                                table.getColumns().removeAll(carne, nombre, carrera);
                                 CreadorDeVentanas("VentanaNuevoStore");
                             }
                         });
@@ -217,7 +235,7 @@ public class ControladorVentanaPrincipal implements Initializable {
                         Mostrar.setOnAction(new EventHandler() {///// Funcion de la opcion de Mostrar
                             @Override
                             public void handle(Event t) {
-                                tabla.setItems(list);                                                            // ********************
+                                tabla.setItems(list2);                                                            // ********************
                             }
                         });
                         EliminarJsonSeleccionado.setOnAction(new EventHandler() {

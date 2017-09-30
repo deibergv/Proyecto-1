@@ -41,18 +41,10 @@ public class ControladorVentanaBusqueda implements Initializable {
     public ObservableList<Tabla> list = FXCollections.observableArrayList(
             new Tabla("123", "Pedro", "Cuenta vacas"),
             new Tabla("456", "Leiner", "Biotecnologia"),
-            new Tabla("678", "Felipe", "Computacion"),
-            new Tabla("2017159397", "Deiber", "CE")
+            new Tabla("678", "Felipe", "Computacion")
     );
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        TableColumn<Tabla, String> columna = new TableColumn<>();
-        columna.setText("carne");
-        TableColumn<Tabla, String> columna2 = new TableColumn<>();
-        columna.setText("nombre");
-        TableColumn<Tabla, String> columna3 = new TableColumn<>();
-        columna.setText("carrera");
-        table.getColumns().addAll(columna,columna2, columna3);
         ///////////////////////////////////tabla////////////////////////////////////////
         carne.setCellValueFactory(new PropertyValueFactory<Tabla, String>("carne"));
         nombre.setCellValueFactory(new PropertyValueFactory<Tabla, String>("nombre"));

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,9 +8,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="GUI.ControladorVentanaActualizacion">
+<AnchorPane id="AnchorPane" prefHeight="165.0" prefWidth="265.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControladorVentanaActualizacion">
 <children>
-        <Label fx:id="label" layoutX="126" layoutY="60" minHeight="16" minWidth="69" text="Actualizacion" />
-        <Button fx:id="button" layoutX="126" layoutY="90" onAction="#salirVentana" text="Cerrar Ventana" />
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="95.0" prefWidth="230.0" spacing="7.0">
+         <children>
+            <Separator prefHeight="7.0" prefWidth="414.0" />
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="400.0" spacing="5.0">
+               <children>
+                  <Label prefHeight="15.0" prefWidth="160.0" text="Atributo:">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ChoiceBox fx:id="Atributos" prefHeight="25.0" prefWidth="246.0" />
+               </children>
+            </HBox>
+            <Separator prefHeight="7.0" prefWidth="414.0" />
+            <TextField fx:id="Objeto" prefHeight="25.0" prefWidth="347.0" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <Button fx:id="Aceptar" layoutX="47.0" layoutY="120.0" onAction="#Aceptar" text="Aceptar" />
+        <Button fx:id="Cancelar" layoutX="144.0" layoutY="120.0" onAction="#Cancelar" text="Cancelar" />
     </children>
 </AnchorPane>
